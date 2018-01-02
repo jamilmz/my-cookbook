@@ -1,0 +1,35 @@
+<h1> Nova receita </h1>
+
+<%= form_for(@recipe) do |form| %>
+  <p>
+    <%= form.label :title, 'Título' %>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label :recipe_type, 'Tipo da Receita' %>
+    <%= form.text_field :recipe_type %>
+  </p>
+  <p>
+    <%= form.label :cuisine, 'Cozinha' %>
+    <%= form.text_field :cuisine %>
+  </p>
+  <p>
+    <%= form.label :difficulty, 'Dificuldade' %>
+    <%= form.text_field :difficulty %>
+  </p>
+  <p>
+    <%= form.label :cook_time, 'Tempo de Preparo' %>
+    <%= form.text_field :cook_time %>
+  </p>
+  <p>
+    <%= form.label :ingredients, 'Ingredientes' %>
+    <%= form.text_field :ingredients %>
+  </p>
+  <p>
+    <%= form.label :method, 'Como Preparar' %>
+    <%= form.text_field :method %>
+  </p>
+  <p>
+    <%= form.submit 'Enviar' %>
+  </p>
+<% end %>

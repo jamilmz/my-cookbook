@@ -1,4 +1,8 @@
 <h1> Nova receita </h1>
+<% if @recipe.errors.any? %>
+ <h1> Você deve informar todos os dados da receita </h1>
+<% end %>
+
 
 <%= form_for(@recipe) do |form| %>
   <p>

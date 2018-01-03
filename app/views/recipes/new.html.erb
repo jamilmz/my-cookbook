@@ -10,8 +10,8 @@
     <%= form.text_field :title %>
   </p>
   <p>
-    <%= form.label :recipe_type, 'Tipo da Receita' %>
-    <%= form.text_field :recipe_type %>
+    <%= form.label :recipe_type_id, 'Tipo da Receita' %>
+    <%= form.collection_select(:recipe_type_id, RecipeType.all, :id, :name) %>
   </p>
   <p>
     <%= form.label :cuisine_id, 'Cozinha' %>

@@ -1,0 +1,14 @@
+<%= form_for(@cuisine) do |f| %>
+
+  <% if @cuisine.errors.any? %>
+    <h1> Você deve informar o nome da cozinha </h1>
+  <% end %>
+
+  <p>
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Enviar' %>
+  </p>
+<% end %>

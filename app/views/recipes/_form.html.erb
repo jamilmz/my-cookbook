@@ -1,0 +1,39 @@
+<h1> Nova receita </h1>
+<% if @recipe.errors.any? %>
+ <h1> Você deve informar todos os dados da receita </h1>
+<% end %>
+
+
+<%= form_for(@recipe) do |form| %>
+  <p>
+    <%= form.label :title, 'Título' %>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label :recipe_type_id, 'Tipo da Receita' %>
+    <%= form.collection_select(:recipe_type_id, RecipeType.all, :id, :name) %>
+  </p>
+  <p>
+    <%= form.label :cuisine_id, 'Cozinha' %>
+    <%= form.collection_select(:cuisine_id, Cuisine.all, :id, :name) %>
+  </p>
+  <p>
+    <%= form.label :difficulty, 'Dificuldade' %>
+    <%= form.text_field :difficulty %>
+  </p>
+  <p>
+    <%= form.label :cook_time, 'Tempo de Preparo' %>
+    <%= form.text_field :cook_time %>
+  </p>
+  <p>
+    <%= form.label :ingredients, 'Ingredientes' %>
+    <%= form.text_field :ingredients %>
+  </p>
+  <p>
+    <%= form.label :method, 'Como Preparar' %>
+    <%= form.text_field :method %>
+  </p>
+  <p>
+    <%= form.submit 'Enviar' %>
+  </p>
+<% end %>

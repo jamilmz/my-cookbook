@@ -1,0 +1,11 @@
+<aside>  
+	<h3> Cozinha </h3>
+		<% @cuisines_all.each do |cuisine| %>
+		  <p> <%= link_to cuisine.name, cuisine_path(cuisine) %> </p>
+		<% end %>
+
+	<h3> Tipo </h3>
+		<% @recipe_types_all.each do |type| %>
+		  <p> <%= link_to type.name, recipe_type_path(type) %> </p>
+		<% end %>
+</aside>

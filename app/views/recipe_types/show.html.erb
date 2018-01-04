@@ -1,17 +1,26 @@
-<h1> <%= @recipe_type.name %> </h1>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-4">
+	  <%= render 'shared/aside' %>
+	</div>
 
-<% if @recipes.count > 0 %>
-	<% @recipes.each do |recipe| %>
-	  <h1> <%= recipe.title %> </h1>
-	  <ul>
-	  	<li> <%= recipe.recipe_type.name %> </li>
-	  	<li> <%= recipe.cuisine.name %> </li>
-	  	<li> <%= recipe.difficulty %> </li>
-	  	<li> <%= recipe.cook_time %> minutos </li>
-	  </ul>
-	<% end %>
-<% else %>
-  <h1> Nenhuma receita encontrada para este tipo de receitas </h1>
-<% end %>
-
-<!-- correcao de commit -->
+	<div class="col-md-8">
+		<div class="row">
+			<h1> Receitas filtradas por tipo: <%= @recipe_type.name %> </h1>
+			<% if @recipes.count > 0 %>
+				<div class="col-md-4 col-sm-6">
+					<% @recipes.each do |recipe| %>
+					  <h1> <%= link_to recipe.title, recipe_path(recipe) %> </h1>
+					  <ul>
+					  	<li> <%= recipe.recipe_type.name %> </li>
+					  	<li> <%= recipe.cuisine.name %> </li>
+					  	<li> <%= recipe.difficulty %> </li>
+					  	<li> <%= recipe.cook_time %> minutos </li>
+					  </ul>
+					<% end %>
+				</div>
+			<% else %>
+			  <p> Nenhuma receita encontrada para este tipo de receitas </p>
+			<% end %>
+		</div>
+  </div>
+</div>

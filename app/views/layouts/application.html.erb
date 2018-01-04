@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+  	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MyCookbook</title>
     <%= csrf_meta_tags %>
 
@@ -9,6 +12,22 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-7 col-md-7">
+          <h1> CookBook </h1>
+          <p> Bem-vindo ao maior livro de receitas online </p>
+        </div>
+         <div class="col-xs-5 col-md-5">
+          <%= render 'shared/menu' %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
+
+    <%= render 'shared/footer' %>
   </body>
 </html>

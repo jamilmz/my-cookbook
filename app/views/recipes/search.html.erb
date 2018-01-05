@@ -1,0 +1,20 @@
+<h1> Resultado da busca por: <%= @title %> </h1>
+
+<% if @recipes.empty? %>
+	<p>
+		Nenhuma receita encontrada para a busca. Deseja cadastrar uma nova receita? <%= link_to 'Enviar uma receita', new_recipe_path %>
+	</p>
+
+<% else%>
+	<% @recipes.each do |r| %>
+	  <h1>
+	    <%= link_to r.title, recipe_path(r.id) %>
+	  </h1>
+	  <ul>
+	    <li>Tipo: <%= r.recipe_type.name %></li>
+	    <li>Cozinha: <%= r.cuisine .name%></li>
+	    <li>Dificuldade: <%= r.difficulty %></li>
+	    <li>Tempo de preparo: <%= r.cook_time %> minutos</li>
+	  </ul>
+  <% end %>
+<% end %>

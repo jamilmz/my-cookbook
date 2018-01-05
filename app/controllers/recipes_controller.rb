@@ -31,6 +31,11 @@ class RecipesController < ApplicationController
     end
   end
 
+  def search
+    @title = params[:search]
+    @recipes = Recipe.where(title: @title)
+  end
+
   private
     def recipe_params
       params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id, :difficulty, :cook_time, :ingredients, :method)

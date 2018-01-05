@@ -7,6 +7,10 @@ class RecipesController < ApplicationController
   	@recipe = Recipe.new
   end
 
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
   def create 
     @recipe = Recipe.new(recipe_params)
 
@@ -14,6 +18,16 @@ class RecipesController < ApplicationController
       redirect_to @recipe
     else
       render 'new'
+    end
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+
+    if @recipe.update(recipe_params)
+      redirect_to @recipe
+    else
+      render 'edit'
     end
   end
 

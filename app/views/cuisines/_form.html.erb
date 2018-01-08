@@ -8,9 +8,7 @@
       <div class="form-horizontal">
         <%= form_for(@cuisine) do |f| %>
 
-          <% if @cuisine.errors.any? %>
-            <p> Você deve informar o nome da cozinha </p>
-          <% end %>
+          <%= flash[:error] %>
 
           <div class="form-group">
             <p>

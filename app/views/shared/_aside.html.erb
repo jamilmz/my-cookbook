@@ -1,4 +1,4 @@
-<aside>  
+<aside>
 	<h3> Procurar receita </h3>
 	<%= form_tag("/search", method: "get") do %>
 	  <%= label_tag(:search, "Busca:") %>
@@ -7,8 +7,8 @@
 	<% end %>
 
 	<h3> Cozinha </h3>
-	<% @cuisines_all.each do |cuisine| %>
-	  <p> <%= link_to cuisine.name, cuisine_path(cuisine) %> </p>
+	<% @cuisines_all.map do |cuisine| %>
+	   <p> <%= link_to cuisine.name, cuisine_path(cuisine) %> </p>
 	<% end %>
 
 	<h3> Tipo </h3>

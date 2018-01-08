@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   def show
   	@recipe = Recipe.find(params[:id])
-  end	
+  end
 
   def new
   	@recipe = Recipe.new
@@ -11,12 +11,13 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
-  def create 
+  def create
     @recipe = Recipe.new(recipe_params)
 
     if @recipe.save
       redirect_to @recipe
     else
+      flash.now[:error] = "Você deve informar todos os dados da receita"
       render 'new'
     end
   end
@@ -27,6 +28,7 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to @recipe
     else
+      flash.now[:error] = "Você deve informar todos os dados da receita"
       render 'edit'
     end
   end

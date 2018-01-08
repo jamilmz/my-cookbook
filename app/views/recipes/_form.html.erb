@@ -8,9 +8,8 @@
       <div class="row">
         <div class="cold-md-4 col-sm-6">
           <h1> Nova receita </h1>
-          <% if @recipe.errors.any? %>
-           <h1> Você deve informar todos os dados da receita </h1>
-          <% end %>
+
+          <%= flash[:error] %>
 
           <div class="form-horizontal">
             <%= form_for(@recipe) do |form| %>

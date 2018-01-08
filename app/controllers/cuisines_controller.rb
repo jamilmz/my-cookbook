@@ -1,5 +1,5 @@
 class CuisinesController < ApplicationController
-	
+
 	def show
 		@cuisine = Cuisine.find(params[:id])
 		@recipes = Recipe.where(cuisine_id: params[:id])
@@ -15,6 +15,7 @@ class CuisinesController < ApplicationController
 		if @cuisine.save
 			redirect_to @cuisine
 		else
+			flash.now[:error] = "Você deve informar o nome da cozinha"
 			render 'new'
 		end
 	end

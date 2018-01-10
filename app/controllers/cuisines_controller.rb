@@ -1,4 +1,5 @@
 class CuisinesController < ApplicationController
+	before_action :set_aside_variables, only: [:show, :new]
 
 	def show
 		@cuisine = Cuisine.find(params[:id])
@@ -15,8 +16,9 @@ class CuisinesController < ApplicationController
 		if @cuisine.save
 			redirect_to @cuisine
 		else
+			set_aside_variables
 			flash.now[:error] = "Você deve informar o nome da cozinha"
-			render 'new'
+			render :new
 		end
 	end
 
@@ -24,4 +26,9 @@ class CuisinesController < ApplicationController
 	  def cuisine_params
 	  	params.require(:cuisine).permit(:name)
 	  end
+
+		def set_aside_variables
+			@cuisines = Cuisine.all
+			@recipe_types = RecipeType.all
+		end
 end

@@ -22,14 +22,14 @@
               <div class="form-group">
                 <p>
                   <%= form.label :recipe_type_id %>
-                  <%= form.collection_select(:recipe_type_id, @recipe_types_all, :id, :name) %>
+                  <%= form.collection_select(:recipe_type_id, @recipe_types, :id, :name) %>
                 </p>
               </div>
               <div class="form-group">
                 <p>
                   <%= form.label :cuisine_id %>
                 </p>
-                <%= form.collection_select(:cuisine_id, @cuisines_all, :id, :name) %>
+                <%= form.collection_select(:cuisine_id, @cuisines, :id, :name) %>
               </div>
               <div class="form-group">
                 <p>

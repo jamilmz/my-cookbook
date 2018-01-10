@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+before_action :set_aside_variables, only: [:show, :new, :edit]
+
   def show
   	@recipe = Recipe.find(params[:id])
   end
@@ -17,8 +19,9 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to @recipe
     else
+      set_aside_variables
       flash.now[:error] = "Você deve informar todos os dados da receita"
-      render 'new'
+      render :new
     end
   end
 
@@ -28,8 +31,9 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to @recipe
     else
+      set_aside_variables
       flash.now[:error] = "Você deve informar todos os dados da receita"
-      render 'edit'
+      render :edit
     end
   end
 
@@ -41,5 +45,10 @@ class RecipesController < ApplicationController
   private
     def recipe_params
       params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id, :difficulty, :cook_time, :ingredients, :method)
+    end
+
+    def set_aside_variables
+      @cuisines = Cuisine.all
+      @recipe_types = RecipeType.all
     end
 end

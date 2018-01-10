@@ -1,17 +1,17 @@
 <aside>
 	<h3> Procurar receita </h3>
 	<%= form_tag("/search", method: "get") do %>
-	  <%= label_tag(:search, "Busca:") %>
+	  <%= label_tag(:search, I18n.t(:search)) %>
 	  <%= text_field_tag(:search) %>
-	  <%= submit_tag("Buscar") %>
+	  <%= submit_tag(I18n.t(:seek)) %>
 	<% end %>
 
-	<h3> Cozinha </h3>
-	<% @cuisines_all.map do |cuisine| %>
+	<h3> <%= I18n.t('activerecord.models.cuisine', count: @cuisines_all.count) %></h3>
+	<% @cuisines_all.each do |cuisine| %>
 	   <p> <%= link_to cuisine.name, cuisine_path(cuisine) %> </p>
 	<% end %>
 
-	<h3> Tipo </h3>
+	<h3> <%= I18n.t('activerecord.models.recipe_type', count: @recipe_types_all.count) %> </h3>
 	<% @recipe_types_all.each do |type| %>
 	  <p> <%= link_to type.name, recipe_type_path(type) %> </p>
 	<% end %>

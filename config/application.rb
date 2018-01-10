@@ -27,5 +27,10 @@ module MyCookbook
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+
+    # config/application.rb
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    config.i18n.default_locale = :'pt-BR'
   end
 end

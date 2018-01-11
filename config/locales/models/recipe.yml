@@ -11,3 +11,17 @@ pt-BR:
         cook_time: "Tempo de Preparo"
         ingredients: "Ingredientes"
         method: "Como Preparar"
+
+en:
+  activerecord:
+    models:
+      recipe: "Recipe"
+    attributes:
+      recipe:
+        title: "Title"
+        recipe_type_id: "Recipe Type"
+        cuisine_id: "Cuisine"
+        difficulty: "Difficulty"
+        cook_time: "Cook Time"
+        ingredients: "Ingredients"
+        method: "How to Prepare"

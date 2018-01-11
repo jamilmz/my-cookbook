@@ -1,0 +1,7 @@
+pt-BR:
+  recipes_filtered_by: "Receitas filtradas por tipo:"
+  recipes_match_error: "Nenhuma receita encontrada para este tipo de receitas"
+
+en:
+  recipes_filtered_by: "Recipes filtered by type:"
+  recipes_match_error: "No recipe found for this type of recipes"

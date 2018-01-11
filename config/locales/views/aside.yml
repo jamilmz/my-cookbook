@@ -1,7 +1,9 @@
 pt-BR:
+  search_recipe: "Procurar receita"
   search: "Busca"
   seek: "Buscar"
 
 en:
+  search_recipe: "Search recipe"
   search: "Search"
   seek: "Search"

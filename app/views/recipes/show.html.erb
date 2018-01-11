@@ -7,21 +7,23 @@
   	<div class="row">
   		<div class="col-md-4 col-sm-6">
 				<h1> <%= @recipe.title %> </h1>
-				<h3> Detalhes </h3>
+				<h3> <%= I18n.t :details %> </h3>
 				<p> <%= @recipe.recipe_type.name %> </p>
 				<p> <%= @recipe.cuisine.name %> </p>
 				<p> <%= @recipe.difficulty %> </p>
-				<p> <%= @recipe.cook_time%> minutos </p>
-				<h3> Ingredientes </h3>
+				<p>
+					<%= @recipe.cook_time%>
+					<%= I18n.t :minutes %>
+				</p>
+				<h3> <%= I18n.t :ingredients  %> </h3>
 				<p> <%= @recipe.ingredients %> </p>
-				<%= link_to 'Editar', edit_recipe_path(@recipe) %> 
+				<%= link_to I18n.t(:edit), edit_recipe_path(@recipe) %>
 			</div>
 			<div class="col-md-4 col-sm-6">
-				<h3> Como Preparar </h3>
+				<h3> <%= I18n.t :method %> </h3>
 				<p> <%= @recipe.method %> </p>
 			</div>
 		</div>
-		<%= link_to 'Voltar', root_path %>
+		<%= link_to I18n.t(:back), root_path %>
   </div>
 </div>
-

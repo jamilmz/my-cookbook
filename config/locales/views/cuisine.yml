@@ -1,0 +1,7 @@
+pt-BR:
+  cuisine_filtered_by: "Receitas filtradas por cozinha:"
+  cuisine_match_error: "Nenhuma receita encontrada para este tipo de cozinha"
+
+en:
+  cuisine_filtered_by: "Recipes filtered by cuisine:"
+  cuisine_match_error: "No recipe found for this type of cuisine"

@@ -1,20 +1,33 @@
-<h1> Resultado da busca por: <%= @title %> </h1>
+<h1> <%= I18n.t(:search_results_by)%>: <%= @title %> </h1>
 
 <% if @recipes.empty? %>
 	<p>
-		Nenhuma receita encontrada para a busca. Deseja cadastrar uma nova receita? <%= link_to 'Enviar uma receita', new_recipe_path %>
+		<%= I18n.t(:search_empty) %>
+		<%= link_to(I18n.t(:create_new_recipe), new_recipe_path)%>
 	</p>
-
 <% else%>
 	<% @recipes.each do |r| %>
 	  <h1>
 	    <%= link_to r.title, recipe_path(r.id) %>
 	  </h1>
 	  <ul>
-	    <li>Tipo: <%= r.recipe_type.name %></li>
-	    <li>Cozinha: <%= r.cuisine .name%></li>
-	    <li>Dificuldade: <%= r.difficulty %></li>
-	    <li>Tempo de preparo: <%= r.cook_time %> minutos</li>
+	    <li>
+				<%= I18n.t :type %>
+				<%= r.recipe_type.name %>
+			</li>
+	    <li>
+				<%= I18n.t :cuisine %>
+				<%= r.cuisine .name%>
+			</li>
+	    <li>
+				<%= I18n.t :difficulty %>
+				<%= r.difficulty %>
+			</li>
+	    <li>
+				<%= I18n.t :cook_time %>
+				<%= r.cook_time %>
+				<%= I18n.t :minutes %>
+			</li>
 	  </ul>
   <% end %>
 <% end %>

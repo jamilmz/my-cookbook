@@ -37,6 +37,16 @@ before_action :set_aside_variables, only: [:show, :new, :edit]
     end
   end
 
+  def destroy
+    @recipe = Recipe.find(params[:id])
+
+    if @recipe.destroy
+      redirect_to root_path
+    else
+      render :show
+    end
+  end
+
   def search
     @title = params[:search]
     @recipes = Recipe.where(title: @title)

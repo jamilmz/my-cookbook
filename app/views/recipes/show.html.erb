@@ -25,6 +25,10 @@
 			<div class="col-md-4 col-sm-6">
 				<h3> <%= I18n.t :method %> </h3>
 				<p> <%= @recipe.method %> </p>
+				<% unless @recipe.user.nil? %>
+				  <h3> Autor </h3>
+				  <p> <%= @recipe.user.name %></p>
+				<% end %>
 			</div>
 		</div>
 		<%= link_to I18n.t(:back), root_path %>

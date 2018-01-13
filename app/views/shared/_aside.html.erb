@@ -1,7 +1,7 @@
 <aside>
 	<h3> <%= I18n.t :search_recipe %> </h3>
 	<%= form_tag(search_recipes_path, method: "get") do %>
-	  <%= label_tag(:search, I18n.t(:search)) %>
+	  <%= label_tag(:search, I18n.t(:search)) %><br />
 	  <%= text_field_tag(:search) %>
 	  <%= submit_tag(I18n.t(:seek)) %>
 	<% end %>

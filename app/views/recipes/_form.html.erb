@@ -13,43 +13,43 @@
             <%= form_for(@recipe) do |form| %>
               <div class="form-group">
                 <p>
-                  <%= form.label :title %>
+                  <%= form.label :title %><br />
                   <%= form.text_field :title %>
                 </p>
               </div>
               <div class="form-group">
                 <p>
-                  <%= form.label :recipe_type_id %>
+                  <%= form.label :recipe_type_id %><br />
                   <%= form.collection_select(:recipe_type_id, @recipe_types, :id, :name) %>
                 </p>
               </div>
               <div class="form-group">
                 <p>
                   <%= form.label :cuisine_id %>
-                </p>
+                </p><br />
                 <%= form.collection_select(:cuisine_id, @cuisines, :id, :name) %>
               </div>
               <div class="form-group">
                 <p>
-                  <%= form.label :difficulty %>
+                  <%= form.label :difficulty %><br />
                   <%= form.text_field :difficulty %>
                 </p>
               </div>
               <div class="form-group">
                 <p>
-                  <%= form.label :cook_time %>
+                  <%= form.label :cook_time %><br />
                   <%= form.text_field :cook_time %>
                 </p>
               </div>
               <div class="form-group">
                 <p>
-                  <%= form.label :ingredients %>
+                  <%= form.label :ingredients %><br />
                   <%= form.text_field :ingredients %>
                 </p>
               </div>
               <div class="form-group">
                 <p>
-                  <%= form.label :method %>
+                  <%= form.label :method %><br />
                   <%= form.text_field :method %>
                 </p>
               </div>

@@ -15,6 +15,7 @@ before_action :set_aside_variables, only: [:show, :new, :edit]
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
 
     if @recipe.save
       redirect_to @recipe

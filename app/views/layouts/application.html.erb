@@ -16,14 +16,23 @@
       <div class="row">
         <div class="col-xs-7 col-md-7">
           <h1> CookBook </h1>
-          <p> Bem-vindo ao maior livro de receitas online </p>
+          <%if user_signed_in? %>
+            <p> Bem-vindo <%= current_user.email %>
+               ao maior livro de receitas online </p>
+          <% else %>
+            <p> Bem-vindo ao maior livro de receitas online.
+              Faça sua conta hoje e escreva também suas receitas  </p>
+          <% end %>
         </div>
          <div class="col-xs-5 col-md-5">
           <%= render 'shared/menu' %>
         </div>
       </div>
     </div>
-    
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <div class="container-fluid">
       <%= yield %>
     </div>

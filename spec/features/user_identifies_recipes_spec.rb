@@ -3,8 +3,13 @@ require 'rails_helper'
 feature 'User signs recipes' do
   scenario 'successfully' do
     user = User.create(email: 'jamil@gmail.com', password: '12345678', name: 'Jamil')
+    other_user = User.create(email: 'joao@email.com', password: '87654321',
+                      name: 'Joao')
     cuisine = Cuisine.create(name: 'Japonesa')
     recipe_type = RecipeType.create(name: 'Prato Principal')
+    other_recipe = Recipe.create(title: 'Sushi', cuisine: cuisine,
+            recipe_type: recipe_type, user: other_user, difficulty: 'Média',
+            cook_time: 50, ingredients: 'Arroz', method: 'Enrola tudo')
 
     visit root_path
     click_on 'Entrar'
@@ -41,6 +46,8 @@ feature 'User signs recipes' do
     expect(page).to have_css('p', text:  'Enrola tudo')
     expect(page).to have_css('h3', text: 'Autor')
     expect(page).to have_css('p', text: 'Jamil')
+    expect(page).not_to have_content(other_recipe.title)
+    expect(page).not_to have_content(other_user.name)
 
   end
 end

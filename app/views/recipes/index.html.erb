@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-4 col-md-4">
+	  <%= render 'shared/aside' %>
+	</div>
+
+  <div class="col-md-8 col-sm-8">
+  	<div class="row">
+			<% @recipes.each do |recipe| %>
+				<div class="col-md-4 col-sm-6">
+				  	<h1> <%= link_to recipe.title, recipe_path(recipe) %> </h1>
+					<ul>
+						<li> <%= recipe.title %> </li>
+						<li> <%= recipe.recipe_type.name %> </li>
+						<li> <%= recipe.cuisine.name %> </li>
+						<li> <%= recipe.difficulty %> </li>
+						<li> <%= recipe.cook_time %> <%= I18n.t :minutes %> </li>
+					</ul>
+				</div>
+			<% end %>
+	  </div>
+  </div>
+</div>

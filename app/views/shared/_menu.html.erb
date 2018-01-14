@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li> <%= link_to(I18n.t(:home) , root_path)%> </a></li>
-      <li><a href="#"> <%= I18n.t :my_recipes %> </a></li>
+      <li><%= link_to(I18n.t(:my_recipes), recipes_path ) %></li>
       <li><%= link_to(I18n.t(:submit_recipe) , new_recipe_path)%></li>
       <% if user_signed_in? %>
         <li> <p> Log Out </p>

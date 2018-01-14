@@ -1,5 +1,11 @@
 class RecipesController < ApplicationController
 before_action :set_aside_variables, only: [:show, :new, :edit]
+before_action :authenticate_user!, only: [:index, :new, :edit, :destroy]
+
+  def index
+    set_aside_variables
+    @recipes = Recipe.where(user: current_user)
+  end
 
   def show
   	@recipe = Recipe.find(params[:id])
@@ -11,6 +17,11 @@ before_action :set_aside_variables, only: [:show, :new, :edit]
 
   def edit
     @recipe = Recipe.find(params[:id])
+    if current_user == @recipe.user
+      @recipe
+    else
+      redirect_to root_path
+    end
   end
 
   def create

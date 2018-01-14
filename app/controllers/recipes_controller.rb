@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
 before_action :set_aside_variables, only: [:show, :new, :edit]
-before_action :authenticate_user!, only: [:index, :new, :edit, :destroy]
+before_action :authenticate_user!, only: [:index, :new, :edit, :destroy,
+              :new_favorite, :favorites, :remove_favorite]
 
   def index
     set_aside_variables
@@ -9,6 +10,7 @@ before_action :authenticate_user!, only: [:index, :new, :edit, :destroy]
 
   def show
   	@recipe = Recipe.find(params[:id])
+    @not_favorite = Favorite.where(user: current_user, recipe: @recipe).empty?
   end
 
   def new
@@ -62,6 +64,39 @@ before_action :authenticate_user!, only: [:index, :new, :edit, :destroy]
   def search
     @title = params[:search]
     @recipes = Recipe.where(title: @title)
+  end
+
+  def new_favorite
+    set_aside_variables
+
+    @recipe = Recipe.find(params[:id])
+    @favorite = Favorite.new(user: current_user, recipe: @recipe)
+
+    if @favorite.save
+      flash[:notice] = 'Receita favoritada com sucesso'
+      redirect_to recipe_path(id: @recipe.id)
+    else
+      flash[:error] = 'Erro ao favoritar receita'
+      redirect_to root_path
+    end
+  end
+
+  def favorites
+    set_aside_variables
+    @favorites = Favorite.where(user: current_user)
+  end
+
+  def remove_favorite
+    set_aside_variables
+    @recipe = Recipe.find(params[:id])
+    @favorite = Favorite.where(user: current_user, recipe: @recipe).take
+    if Favorite.destroy(@favorite.id)
+      flash[:notice] = 'Receita removida dos favoritos'
+      redirect_to recipe_path(id: @recipe.id)
+    else
+      flash[:error] = 'Erro ao remover receita dos favoritos'
+      redirect_to root_path
+    end
   end
 
   private

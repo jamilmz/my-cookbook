@@ -23,6 +23,9 @@
             <p> Bem-vindo ao maior livro de receitas online.
               Faça sua conta hoje e escreva também suas receitas  </p>
           <% end %>
+
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
         </div>
          <div class="col-xs-5 col-md-5">
           <%= render 'shared/menu' %>
@@ -30,8 +33,7 @@
       </div>
     </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
 
     <div class="container-fluid">
       <%= yield %>

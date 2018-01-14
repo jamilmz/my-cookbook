@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-4 col-md-4">
+	  <%= render 'shared/aside' %>
+	</div>
+
+  <div class="col-md-8 col-sm-8">
+  	<div class="row">
+			<% @favorites.each do |favorite| %>
+				<div class="col-md-4 col-sm-6">
+				  	<h1> <%= link_to favorite.recipe.title, recipe_path(favorite.recipe) %> </h1>
+					<ul>
+						<li> <%= favorite.recipe.recipe_type.name %> </li>
+						<li> <%= favorite.recipe.cuisine.name %> </li>
+						<li> <%= favorite.recipe.difficulty %> </li>
+						<li> <%= favorite.recipe.cook_time %> <%= I18n.t :minutes %> </li>
+					</ul>
+				</div>
+			<% end %>
+	  </div>
+  </div>
+</div>

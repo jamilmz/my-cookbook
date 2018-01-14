@@ -23,6 +23,15 @@
 					 		method: :delete,
 					 		data: {confirm: 'Tem certeza?'}%>
 				<% end %>
+
+				<% if user_signed_in? %>
+					<% if @not_favorite %>
+						<%= link_to 'Favoritar', new_favorite_recipes_path(id: @recipe.id)  %>
+					<% else %>
+						<%= link_to 'Remover Favorito',
+						remove_favorite_recipes_path(id: @recipe.id) %>
+					<% end %>
+				<% end %>
 			</div>
 			<div class="col-md-4 col-sm-6">
 				<h3> <%= I18n.t :method %> </h3>

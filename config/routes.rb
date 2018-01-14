@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do
       get 'search'
+      get 'favorites'
+      get 'new_favorite'
+      get 'remove_favorite'
     end
   end
   resources :cuisines, only: [:show, :new, :create]

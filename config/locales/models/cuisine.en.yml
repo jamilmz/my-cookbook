@@ -1,0 +1,9 @@
+en:
+  activerecord:
+    models:
+      cuisine:
+        one: "Cuisine"
+        other: "Cuisines"
+    attributes:
+      cuisine:
+        name: "Name"

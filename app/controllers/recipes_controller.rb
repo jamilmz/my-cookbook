@@ -1,11 +1,11 @@
 class RecipesController < ApplicationController
 before_action :set_aside_variables, only: [:show, :new, :edit]
-before_action :authenticate_user!, only: [:index, :new, :edit, :destroy,
+before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
               :new_favorite, :favorites, :remove_favorite]
 
   def index
     set_aside_variables
-    @recipes = Recipe.where(user: current_user)
+    @recipes = Recipe.all
   end
 
   def show
@@ -97,6 +97,11 @@ before_action :authenticate_user!, only: [:index, :new, :edit, :destroy,
       flash[:error] = 'Erro ao remover receita dos favoritos'
       redirect_to root_path
     end
+  end
+
+  def my_recipes
+    set_aside_variables
+    @recipes = Recipe.where(user: current_user)
   end
 
   private

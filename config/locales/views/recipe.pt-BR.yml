@@ -11,17 +11,3 @@ pt-BR:
   details: "Detalhes"
   ingredients: "Ingredientes"
   method: "Como Preparar"
-
-en:
-  edit_recipe: "Edit Recipe"
-  new_recipe: "New Recipe"
-  search_results_by: "Search result for"
-  search_empty: "No recipe found for the search."
-  create_new_recipe: "Would you like to register a new recipe?"
-  type: "Type"
-  cuisine: "Cuisine"
-  difficulty: "Difficulty"
-  cook_time: "Cook Time"
-  details: "Details"
-  ingredients: "Ingredients"
-  method: "How to prepare"

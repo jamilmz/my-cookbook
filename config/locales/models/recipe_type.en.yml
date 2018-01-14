@@ -1,0 +1,9 @@
+en:
+  activerecord:
+    models:
+      recipe_type:
+        one: "Recipe Type"
+        other: "Recipe Types"
+    attributes:
+      recipe_type:
+        name: "Name"

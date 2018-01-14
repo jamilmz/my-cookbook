@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li> <%= link_to(I18n.t(:home) , root_path)%> </a></li>
-      <li><%= link_to(I18n.t(:my_recipes), recipes_path ) %></li>
+      <li><%= link_to(I18n.t(:my_recipes), my_recipes_recipes_path ) %></li>
       <li><%= link_to(I18n.t(:submit_recipe) , new_recipe_path)%></li>
       <li> <%= link_to 'Minhas Receitas Favoritas', favorites_recipes_path %> </li>
       <% if user_signed_in? %>

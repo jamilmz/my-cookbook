@@ -26,10 +26,13 @@
 
 				<% if user_signed_in? %>
 					<% if @not_favorite %>
-						<%= link_to 'Favoritar', new_favorite_recipes_path(id: @recipe.id)  %>
+						<%= link_to 'Favoritar',
+						 new_favorite_recipe_path(@recipe),
+						 method: :post  %>
 					<% else %>
 						<%= link_to 'Remover Favorito',
-						remove_favorite_recipes_path(id: @recipe.id) %>
+						remove_favorite_recipe_path(@recipe),
+						method: :delete%>
 					<% end %>
 				<% end %>
 			</div>

@@ -7,9 +7,12 @@ Rails.application.routes.draw do
     collection do
       get 'search'
       get 'my_recipes'
-      get 'favorites'
-      get 'new_favorite'
-      get 'remove_favorite'
+      get 'my_favorites'
+    end
+
+    member do
+      post 'new_favorite'
+      delete 'remove_favorite'
     end
   end
   resources :cuisines, only: [:show, :new, :create]

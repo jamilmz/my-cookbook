@@ -1,10 +1,10 @@
 class RecipesController < ApplicationController
-before_action :set_aside_variables, only: [:show, :new, :edit]
+before_action :set_aside_variables, only: [:show, :new, :edit, :index,
+              :new_favorite, :remove_favorite, :my_favorites, :my_recipes]
 before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
               :new_favorite, :favorites, :remove_favorite]
 
   def index
-    set_aside_variables
     @recipes = Recipe.all
   end
 
@@ -67,27 +67,23 @@ before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
   end
 
   def new_favorite
-    set_aside_variables
-
     @recipe = Recipe.find(params[:id])
     @favorite = Favorite.new(user: current_user, recipe: @recipe)
 
     if @favorite.save
       flash[:notice] = 'Receita favoritada com sucesso'
-      redirect_to recipe_path(id: @recipe.id)
+      render :show
     else
       flash[:error] = 'Erro ao favoritar receita'
-      redirect_to root_path
+      render :show
     end
   end
 
-  def favorites
-    set_aside_variables
+  def my_favorites
     @favorites = Favorite.where(user: current_user)
   end
 
   def remove_favorite
-    set_aside_variables
     @recipe = Recipe.find(params[:id])
     @favorite = Favorite.where(user: current_user, recipe: @recipe).take
     if Favorite.destroy(@favorite.id)
@@ -100,7 +96,6 @@ before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
   end
 
   def my_recipes
-    set_aside_variables
     @recipes = Recipe.where(user: current_user)
   end
 

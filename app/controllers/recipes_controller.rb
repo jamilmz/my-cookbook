@@ -1,15 +1,16 @@
 class RecipesController < ApplicationController
-before_action :set_aside_variables, only: [:show, :new, :edit, :index,
-              :new_favorite, :remove_favorite, :my_favorites, :my_recipes]
-before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
+  before_action :set_aside_variables, only: [:show, :new, :edit, :index,
+              :my_favorites, :my_recipes]
+  before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
               :new_favorite, :favorites, :remove_favorite]
+  before_action :set_find_recipe, only: [:show, :edit, :update, :destroy,
+              :new_favorite, :remove_favorite]
 
   def index
     @recipes = Recipe.all
   end
 
   def show
-  	@recipe = Recipe.find(params[:id])
   end
 
   def new
@@ -17,7 +18,6 @@ before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
     if current_user == @recipe.user
       @recipe
     else
@@ -30,6 +30,7 @@ before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
     @recipe.user = current_user
 
     if @recipe.save
+      flash[:notice] = "Receita cadastrada com sucesso"
       redirect_to @recipe
     else
       set_aside_variables
@@ -39,8 +40,6 @@ before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
-
     if @recipe.update(recipe_params)
       redirect_to @recipe
     else
@@ -51,12 +50,11 @@ before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
-
     if @recipe.destroy
+      flash[:notice] = 'Receita deletada com sucesso'
       redirect_to root_path
     else
-      render :show
+      redirect_to @recipe
     end
   end
 
@@ -66,15 +64,14 @@ before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
   end
 
   def new_favorite
-    @recipe = Recipe.find(params[:id])
     @favorite = Favorite.new(user: current_user, recipe: @recipe)
 
     if @favorite.save
       flash[:notice] = 'Receita favoritada com sucesso'
-      render :show
+      redirect_to @recipe
     else
       flash[:error] = 'Erro ao favoritar receita'
-      render :show
+      redirect_to @recipe
     end
   end
 
@@ -83,14 +80,13 @@ before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
   end
 
   def remove_favorite
-    @recipe = Recipe.find(params[:id])
-    @favorite = Favorite.where(user: current_user, recipe: @recipe).take
-    if Favorite.destroy(@favorite.id)
+    @favorite = Favorite.find_by(user: current_user, recipe: @recipe)
+    if @favorite.destroy
       flash[:notice] = 'Receita removida dos favoritos'
-      redirect_to recipe_path(id: @recipe.id)
+      redirect_to @recipe
     else
       flash[:error] = 'Erro ao remover receita dos favoritos'
-      redirect_to root_path
+      redirect_to @recipe
     end
   end
 
@@ -100,11 +96,16 @@ before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
 
   private
     def recipe_params
-      params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id, :difficulty, :cook_time, :ingredients, :method)
+      params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id,
+      :difficulty, :cook_time, :ingredients, :method)
     end
 
     def set_aside_variables
       @cuisines = Cuisine.all
       @recipe_types = RecipeType.all
+    end
+
+    def set_find_recipe
+      @recipe = Recipe.find(params[:id])
     end
 end

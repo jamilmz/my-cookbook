@@ -11,4 +11,8 @@ class User < ApplicationRecord
   def favorited?(recipe)
     favorite_recipes.include? recipe
   end
+
+  def my_recipe?(recipe)
+    recipes.include? recipe
+  end
 end

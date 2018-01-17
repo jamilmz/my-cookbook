@@ -27,14 +27,12 @@ feature 'user has favorites' do
 
     click_on recipe.title
     click_on 'Favoritar'
-    # click_on 'Minhas Receitas Favoritas'
 
     expect(page).to have_content('Receita favoritada com sucesso')
     expect(page).to have_content(recipe.title)
-    # expect(page).not_to have_link(other_recipe.title)
   end
 
-  scenario 'and click on Minhas Receitas Favoritas and see your favorite recipes' do
+  scenario 'and click on Minhas Receitas Favoritas and see your favorites' do
     user = User.create(email: 'jamil@gmail.com',
     password: '12345678', name: 'Jamil')
     other_user = User.create(email: 'joao@email.com',

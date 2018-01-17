@@ -17,21 +17,16 @@
 				</p>
 				<h3> <%= I18n.t :ingredients  %> </h3>
 				<p> <%= @recipe.ingredients %> </p>
-				<% if @recipe.user == current_user %>
-					<%= link_to I18n.t(:edit), edit_recipe_path(@recipe) %>
-					<%= link_to 'Remover', recipe_path(@recipe),
-					 		method: :delete,
-					 		data: {confirm: 'Tem certeza?'}%>
+
+				<% if user_signed_in? && current_user.favorited?(@recipe) %>
+				  <%= link_to 'Remover Favorito', remove_favorite_recipe_path(@recipe), method: :delete %>
+				<% else %>
+				  <%= link_to 'Favoritar', new_favorite_recipe_path(@recipe), method: :post %>
 				<% end %>
 
-				<% if user_signed_in? %>
-					<% if current_user.favorited? @recipe %>
-						<%= link_to 'Remover Favorito',
-						remove_favorite_recipe_path(@recipe),	method: :delete%>
-					<% else %>
-						<%= link_to 'Favoritar', 
-						new_favorite_recipe_path(@recipe), method: :post  %>
-					<% end %>
+				<% if user_signed_in? && current_user.my_recipe?(@recipe) %>
+				  <%= link_to 'Editar', edit_recipe_path(@recipe)%>
+				  <%= link_to 'Remover', recipe_path(@recipe), method: :delete  %>
 				<% end %>
 			</div>
 			<div class="col-md-4 col-sm-6">

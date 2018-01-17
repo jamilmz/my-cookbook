@@ -19,9 +19,9 @@
 				<p> <%= @recipe.ingredients %> </p>
 
 				<% if user_signed_in? && current_user.favorited?(@recipe) %>
-				  <%= link_to 'Remover Favorito', remove_favorite_recipe_path(@recipe), method: :delete %>
+				  <%= link_to 'Remover Favorito', delete_favorite_recipe_path(@recipe), method: :delete %>
 				<% else %>
-				  <%= link_to 'Favoritar', new_favorite_recipe_path(@recipe), method: :post %>
+				  <%= link_to 'Favoritar', favorite_recipe_path(@recipe), method: :post %>
 				<% end %>
 
 				<% if user_signed_in? && current_user.my_recipe?(@recipe) %>

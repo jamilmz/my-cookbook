@@ -2,9 +2,9 @@ class RecipesController < ApplicationController
   before_action :set_aside_variables, only: [:show, :new, :edit, :index,
               :my_favorites, :my_recipes]
   before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
-              :new_favorite, :favorites, :remove_favorite]
+              :favorite, :favorites, :delete_favorite]
   before_action :set_find_recipe, only: [:show, :edit, :update, :destroy,
-              :new_favorite, :remove_favorite]
+              :favorite, :delete_favorite]
 
   def index
     @recipes = Recipe.all
@@ -63,7 +63,7 @@ class RecipesController < ApplicationController
     @recipes = Recipe.where(title: @title)
   end
 
-  def new_favorite
+  def favorite
     @favorite = Favorite.new(user: current_user, recipe: @recipe)
 
     if @favorite.save
@@ -79,7 +79,7 @@ class RecipesController < ApplicationController
     @favorites = Favorite.where(user: current_user)
   end
 
-  def remove_favorite
+  def delete_favorite
     @favorite = Favorite.find_by(user: current_user, recipe: @recipe)
     if @favorite.destroy
       flash[:notice] = 'Receita removida dos favoritos'

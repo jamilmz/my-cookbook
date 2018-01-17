@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     end
 
     member do
-      post 'new_favorite'
-      delete 'remove_favorite'
+      post 'favorite'
+      delete 'favorite', to: 'recipes#delete_favorite', as: 'delete_favorite'
     end
   end
   resources :cuisines, only: [:show, :new, :create]

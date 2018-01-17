@@ -21,7 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem 'autoprefixer-rails'
-# Flexible authentication solution for Rails with Warden. 
+# Flexible authentication solution for Rails with Warden.
 gem 'devise'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -44,6 +44,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.6'
   # Acceptance test framework for web applications
   gem 'capybara'
+
+  gem 'factory_bot_rails'
 end
 
 group :development do

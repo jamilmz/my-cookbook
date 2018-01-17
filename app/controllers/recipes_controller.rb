@@ -10,7 +10,6 @@ before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
 
   def show
   	@recipe = Recipe.find(params[:id])
-    @not_favorite = Favorite.where(user: current_user, recipe: @recipe).empty?
   end
 
   def new

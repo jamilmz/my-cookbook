@@ -159,4 +159,16 @@ feature 'user has favorites' do
 
    expect(page).not_to have_link recipe.title
    end
+
+   scenario 'visitor cant see favorite links' do
+     user = create(:user)
+     recipe = create(:recipe, user: user)
+
+     visit root_path
+
+     click_on recipe.title
+
+     expect(page).not_to have_link 'Favoritar'
+     expect(page).not_to have_link 'Remover Favorito'
+   end
 end

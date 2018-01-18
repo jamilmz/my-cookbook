@@ -6,7 +6,9 @@ en:
       recipe:
         title: "Title"
         recipe_type_id: "Recipe Type"
+        recipe_type: "Recipe Type"
         cuisine_id: "Cuisine"
+        cuisine: "Cuisine"
         difficulty: "Difficulty"
         cook_time: "Cook Time"
         ingredients: "Ingredients"

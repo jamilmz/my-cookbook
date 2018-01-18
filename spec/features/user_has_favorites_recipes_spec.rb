@@ -140,4 +140,23 @@ feature 'user has favorites' do
 
     expect(page).not_to have_content other_recipe.title
   end
+
+  scenario 'user visits the page of favorite recipes and the owner of the recipe deleted it' do
+    user = create(:user)
+    another_user = create(:user, email: 'another@gmail.com')
+
+    recipe = create(:recipe, user: another_user)
+    Favorite.create(user: user, recipe: recipe)
+
+    login_as(another_user)
+    recipe.destroy
+    logout(another_user)
+
+    login_as(user)
+    visit root_path
+
+    click_on 'Minhas Receitas Favoritas'
+
+   expect(page).not_to have_link recipe.title
+   end
 end

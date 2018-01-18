@@ -38,6 +38,18 @@
 				  <h3> Autor </h3>
 				  <p> <%= @recipe.user.name %></p>
 				<% end %>
+
+				<% if user_signed_in? %>
+				 <%= form_tag(share_recipe_path, method: :post) do %>
+				   <%= label_tag :name, 'Nome '%>
+					 <%= text_field_tag :name %>
+				   <%= label_tag :email %>
+					 <%= text_field_tag :email %>
+					 <%= label_tag :message, 'Mensagem' %>
+					 <%= text_area_tag :message  %>
+					 <%= submit_tag I18n.t(:submit) %>
+				 <% end %>
+				<% end %>
 			</div>
 		</div>
 		<%= link_to I18n.t(:back), root_path %>

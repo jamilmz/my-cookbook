@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
               :favorite, :favorites, :delete_favorite]
   before_action :set_find_recipe, only: [:show, :edit, :update, :destroy,
-              :favorite, :delete_favorite]
+              :favorite, :delete_favorite, :share]
 
   def index
     @recipes = Recipe.all
@@ -92,6 +92,17 @@ class RecipesController < ApplicationController
 
   def my_recipes
     @recipes = Recipe.where(user: current_user)
+  end
+
+  def share
+    name = params[:name]
+    email = params[:email]
+    message = params[:message]
+
+    RecipesMailer.share(name, email, message, @recipe.id).deliver_now
+
+    flash[:notice] = "Receita compartilhada com sucesso"
+    redirect_to @recipe
   end
 
   private

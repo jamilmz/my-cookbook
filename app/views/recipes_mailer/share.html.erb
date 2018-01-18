@@ -1,0 +1,13 @@
+<h1> Olá <%= @name %> </h1>
+
+<p> <%= @message %></p>
+<br>
+
+<h3>Aqui vai um resumo da receita: <%= @recipe.title %> </h3>
+<ul>
+  <li> <%= @recipe.cuisine.name %> </li>
+  <li> <%= @recipe.ingredients %> </li>
+  <li> <%= @recipe.cook_time %> </li>
+</ul>
+
+<p> Vai lá no link <%= recipe_url(@recipe) %> para ver ela completa </p>

@@ -3,4 +3,8 @@ pt-BR:
   back: "Voltar"
   edit: "Editar"
   minutes: "minutos"
-  welcome: "Bem-vindo ao maior livro de receitas online"
+  welcome: "Bem-vindo"
+  welcome_phrase: "ao maior livro de receitas online"
+  welcome_complete: "Bem-vindo ao maior livro de receitas online"
+  login: "Entrar"
+  logout: 'Sair'

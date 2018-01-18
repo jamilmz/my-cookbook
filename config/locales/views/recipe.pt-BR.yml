@@ -11,3 +11,7 @@ pt-BR:
   details: "Detalhes"
   ingredients: "Ingredientes"
   method: "Como Preparar"
+  remove_favorite: 'Remover Favorito'
+  favorite: 'Favoritar'
+  edit: 'Editar'
+  remove: 'Remover'

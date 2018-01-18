@@ -33,9 +33,9 @@ feature 'User sign in' do
     within('div.actions') do
       click_on 'Entrar'
     end
-    click_on 'Log Out'
+    click_on 'Sair'
 
     expect(page).to have_link('Entrar')
-    expect(page).not_to have_link('Log Out')
+    expect(page).not_to have_link('Sair')
   end
 end

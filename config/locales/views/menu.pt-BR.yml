@@ -2,4 +2,6 @@ pt-BR:
   home: "Ínicio"
   my_recipes: "Minhas Receitas"
   submit_recipe: "Enviar uma receita"
-  exit: "Sair"
+  logout: "Sair"
+  login: "Entrar"
+  my_favorites: 'Minhas Receitas Favoritas'

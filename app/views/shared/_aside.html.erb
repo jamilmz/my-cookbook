@@ -6,7 +6,7 @@
 	  <%= submit_tag(I18n.t(:seek)) %>
 	<% end %>
 
-	<h3> <%= link_to 'Visualizar todas receitas', recipes_path %>
+	<h3> <%= link_to I18n.t(:view_recipes), recipes_path %>
 
 	<h3> <%= I18n.t('activerecord.models.cuisine', count: @cuisines.count) %></h3>
 	<% @cuisines.each do |cuisine| %>

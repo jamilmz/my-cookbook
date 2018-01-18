@@ -11,3 +11,7 @@ en:
   details: "Details"
   ingredients: "Ingredients"
   method: "How to prepare"
+  remove_favorite: 'Remove Favorite'
+  favorite: 'Favorite'
+  edit: 'Edit'
+  remove: 'Remove'

@@ -19,14 +19,14 @@
 				<p> <%= @recipe.ingredients %> </p>
 
 				<% if user_signed_in? && current_user.favorited?(@recipe) %>
-				  <%= link_to 'Remover Favorito', delete_favorite_recipe_path(@recipe), method: :delete %>
+				  <%= link_to I18n.t(:remove_favorite), delete_favorite_recipe_path(@recipe), method: :delete %>
 				<% else %>
-				  <%= link_to 'Favoritar', favorite_recipe_path(@recipe), method: :post %>
+				  <%= link_to I18n.t(:favorite), favorite_recipe_path(@recipe), method: :post %>
 				<% end %>
 
 				<% if user_signed_in? && current_user.my_recipe?(@recipe) %>
-				  <%= link_to 'Editar', edit_recipe_path(@recipe)%>
-				  <%= link_to 'Remover', recipe_path(@recipe), method: :delete  %>
+				  <%= link_to I18n.t(:edit), edit_recipe_path(@recipe)%>
+				  <%= link_to I18n.t(:remove), recipe_path(@recipe), method: :delete  %>
 				<% end %>
 			</div>
 			<div class="col-md-4 col-sm-6">

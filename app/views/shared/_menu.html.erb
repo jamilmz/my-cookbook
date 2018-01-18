@@ -4,11 +4,11 @@
       <li> <%= link_to(I18n.t(:home) , root_path)%> </a></li>
       <li><%= link_to(I18n.t(:my_recipes), my_recipes_recipes_path ) %></li>
       <li><%= link_to(I18n.t(:submit_recipe) , new_recipe_path)%></li>
-      <li> <%= link_to 'Minhas Receitas Favoritas', my_favorites_recipes_path %> </li>
+      <li> <%= link_to I18n.t(:my_favorites), my_favorites_recipes_path %> </li>
       <% if user_signed_in? %>
-        <li> <%= link_to 'Log Out', destroy_user_session_path, method: :delete %> </li>
+        <li> <%= link_to I18n.t(:logout), destroy_user_session_path, method: :delete %> </li>
       <% else %>
-        <li><%= link_to 'Entrar', new_user_session_path  %> </li>
+        <li><%= link_to I18n.t(:login), new_user_session_path  %> </li>
       <% end %>
     </ul>
   </div>

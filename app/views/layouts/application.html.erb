@@ -17,11 +17,12 @@
         <div class="col-xs-7 col-md-7">
           <h1> CookBook </h1>
           <%if user_signed_in? %>
-            <p> Bem-vindo <%= current_user.email %>
-               ao maior livro de receitas online </p>
+            <p> <%= I18n.t(:welcome) %>
+              <%= current_user.email %>
+              <%= I18n.t(:welcome_phrase) %>
+            </p>
           <% else %>
-            <p> Bem-vindo ao maior livro de receitas online.
-              Faça sua conta hoje e escreva também suas receitas  </p>
+            <p> <%= I18n.t(:welcome_complete) %></p>
           <% end %>
 
           <p class="notice"><%= notice %></p>

@@ -32,6 +32,11 @@
 				<% end %>
 			</div>
 			<div class="col-md-4 col-sm-6">
+				<% if @recipe.image.file? %>
+	        <%= image_tag @recipe.image.url(:medium) %>
+	    	<% else %>
+	      	<p>Foto não encontrada</p>
+	    	<% end %>
 				<h3> <%= I18n.t :method %> </h3>
 				<p> <%= @recipe.method %> </p>
 				<% unless @recipe.user.nil? %>

@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 feature 'user upload recipe image' do
   scenario 'succesfully' do
     user = create(:user)

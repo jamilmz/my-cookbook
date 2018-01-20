@@ -15,7 +15,6 @@ feature 'user sees latest recipes at home' do
      login_as(user)
      visit root_path
 
-     expect(page).not_to have_link recipe.title
      expect(page).to  have_selector('div.recipe', count: 6)
 
   end

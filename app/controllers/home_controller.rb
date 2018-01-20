@@ -3,6 +3,12 @@ class HomeController < ApplicationController
 
 	def index
 		@recipes = Recipe.last(6)
+		@favorite_recipes = []
+
+		favorites = Favorite.order(:id).group(:recipe_id).count
+    favorites.each_key do |f|
+			@favorite_recipes << Recipe.find(f)
+		end
 	end
 
 	def set_aside_variables

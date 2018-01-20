@@ -5,10 +5,12 @@ class HomeController < ApplicationController
 		@recipes = Recipe.last(6)
 		@favorite_recipes = []
 
-		favorites = Favorite.order(:id).group(:recipe_id).count
+		favorites = Favorite.group(:recipe_id).count.sort_by{|k , v| v}.reverse.to_h
     favorites.each_key do |f|
 			@favorite_recipes << Recipe.find(f)
 		end
+
+		@favorite_recipes = @favorite_recipes.first(3)
 	end
 
 	def set_aside_variables

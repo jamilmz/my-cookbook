@@ -1,4 +1,11 @@
-<h1> <%= link_to recipe.title, recipe_path(recipe) %> </h1>
+<h1>
+   <%= link_to recipe.title, recipe_path(recipe) %>
+</h1>
+<% if recipe.highlight %>
+  <figure class="destaque">
+    <%= image_tag('star.png', alt: 'destaque', size: '30') %>
+  </figure>
+<% end %>
 <ul>
   <li> <%= recipe.recipe_type.name %> </li>
   <li> <%= recipe.cuisine.name %> </li>

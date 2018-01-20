@@ -55,6 +55,12 @@
               </div>
               <div class="form-group">
                 <p>
+                  <%= form.label :highlight, 'Destaque' %>
+                  <%= form.check_box :highlight %>
+                </p>
+              </div>
+              <div class="form-group">
+                <p>
                   <%= form.label :image, 'Foto' %>
                   <%= form.file_field :image %>
                 </p>

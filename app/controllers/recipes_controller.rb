@@ -108,7 +108,7 @@ class RecipesController < ApplicationController
   private
     def recipe_params
       params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id,
-      :difficulty, :cook_time, :ingredients, :method, :image)
+      :difficulty, :cook_time, :ingredients, :method, :image, :highlight)
     end
 
     def set_aside_variables

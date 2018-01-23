@@ -14,9 +14,6 @@ feature 'User sends a recipe by email' do
     fill_in 'Email', with: 'mika@gmail.com'
     fill_in 'Mensagem', with: 'Esta receita é muito boa, aproveite!'
 
-    #expect(RecipesMailer).to receive(:share).with('Mika', 'mika@gmail.com',
-    #                                              'Esta receita é muito boa, aproveite!',
-    #                                              recipe.id).and_call_original
     click_on 'Enviar'
 
     expect(current_path).to eq recipe_path(recipe)

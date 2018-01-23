@@ -4,7 +4,7 @@ FactoryBot.define do
     difficulty 'Fácil'
     cook_time 45
     ingredients 'Varios'
-    add_attribute(:method) { 'Misturar tudo'}
+    add_attribute(:method) { 'Misturar tudo' }
     cuisine
     recipe_type
   end

@@ -7,7 +7,7 @@ RSpec.describe RecipesMailer do
       recipe = create(:recipe, user: user)
 
       name = 'Mika'
-      message  = 'Olha esta receita'
+      message = 'Olha esta receita'
       email = 'mika@gmail.com'
 
       mail = RecipesMailer.share(name, email, message, recipe.id)

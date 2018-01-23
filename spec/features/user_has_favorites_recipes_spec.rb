@@ -3,19 +3,23 @@ require 'rails_helper'
 feature 'user has favorites' do
   scenario 'user marks a recipe as favorite' do
     user = User.create(email: 'jamil@gmail.com',
-    password: '12345678', name: 'Jamil')
+                       password: '12345678', name: 'Jamil')
     other_user = User.create(email: 'joao@email.com',
-    password: '87654321', name: 'Joao')
+                       password: '87654321', name: 'Joao')
 
     cuisine = Cuisine.create(name: 'Japonesa')
     recipe_type = RecipeType.create(name: 'Prato Principal')
 
     recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
-            recipe_type: recipe_type, user: other_user, difficulty: 'Fácil',
-            cook_time: 50, ingredients: 'Salmão', method: 'Enrola tudo')
+                           recipe_type: recipe_type, user: other_user,
+                           difficulty: 'Fácil',
+                           cook_time: 50, ingredients: 'Salmão',
+                           method: 'Enrola tudo')
     other_recipe = Recipe.create(title: 'Sushi', cuisine: cuisine,
-            recipe_type: recipe_type, user: other_user, difficulty: 'Média',
-            cook_time: 50, ingredients: 'Arroz', method: 'Enrola tudo')
+                                 recipe_type: recipe_type, user: other_user,
+                                 difficulty: 'Média',
+                                 cook_time: 50, ingredients: 'Arroz',
+                                 method: 'Enrola tudo')
 
     visit root_path
     click_on 'Entrar'
@@ -24,7 +28,6 @@ feature 'user has favorites' do
     within('div.actions') do
       click_on 'Entrar'
     end
-
     click_on recipe.title
     click_on 'Favoritar'
 
@@ -34,19 +37,23 @@ feature 'user has favorites' do
 
   scenario 'and click on Minhas Receitas Favoritas and see your favorites' do
     user = User.create(email: 'jamil@gmail.com',
-    password: '12345678', name: 'Jamil')
+                       password: '12345678', name: 'Jamil')
     other_user = User.create(email: 'joao@email.com',
-    password: '87654321', name: 'Joao')
+                             password: '87654321', name: 'Joao')
 
     cuisine = Cuisine.create(name: 'Japonesa')
     recipe_type = RecipeType.create(name: 'Prato Principal')
 
     recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
-            recipe_type: recipe_type, user: other_user, difficulty: 'Fácil',
-            cook_time: 50, ingredients: 'Salmão', method: 'Enrola tudo')
+                           recipe_type: recipe_type, user: other_user,
+                           difficulty: 'Fácil',
+                           cook_time: 50, ingredients: 'Salmão',
+                           method: 'Enrola tudo')
     other_recipe = Recipe.create(title: 'Sushi', cuisine: cuisine,
-            recipe_type: recipe_type, user: other_user, difficulty: 'Média',
-            cook_time: 50, ingredients: 'Arroz', method: 'Enrola tudo')
+                                 recipe_type: recipe_type, user: other_user,
+                                 difficulty: 'Média',
+                                 cook_time: 50, ingredients: 'Arroz',
+                                 method: 'Enrola tudo')
 
     visit root_path
     click_on 'Entrar'
@@ -75,14 +82,21 @@ feature 'user has favorites' do
     recipe_type = RecipeType.create(name: 'Prato Principal')
 
     recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
-            recipe_type: recipe_type, user: other_user, difficulty: 'Fácil',
-            cook_time: 50, ingredients: 'Salmão', method: 'Enrola tudo')
+                           recipe_type: recipe_type, user: other_user,
+                           difficulty: 'Fácil',
+                           cook_time: 50, ingredients: 'Salmão',
+                           method: 'Enrola tudo')
     other_recipe = Recipe.create(title: 'Sushi', cuisine: cuisine,
-            recipe_type: recipe_type, user: other_user, difficulty: 'Média',
-            cook_time: 50, ingredients: 'Arroz', method: 'Enrola tudo')
+                                 recipe_type: recipe_type, user: other_user,
+                                 difficulty: 'Média',
+                                 cook_time: 50, ingredients: 'Arroz',
+                                 method: 'Enrola tudo')
     another_recipe = Recipe.create(title: 'Rolinho Primavera', cuisine: cuisine,
-            recipe_type: recipe_type, user: other_user, difficulty: 'Díficil',
-            cook_time: 50, ingredients: 'Massa e estar na primavera', method: 'Frita')
+                                   recipe_type: recipe_type, user: other_user,
+                                   difficulty: 'Díficil',
+                                   cook_time: 50,
+                                   ingredients: 'Massa e estar na primavera',
+                                   method: 'Frita')
 
     visit root_path
     click_on 'Entrar'
@@ -106,22 +120,29 @@ feature 'user has favorites' do
 
   scenario 'remove favorite' do
     user = User.create(email: 'jamil@gmail.com',
-    password: '12345678', name: 'Jamil')
+                       password: '12345678', name: 'Jamil')
     other_user = User.create(email: 'joao@email.com',
-    password: '87654321', name: 'Joao')
+                             password: '87654321', name: 'Joao')
 
     cuisine = Cuisine.create(name: 'Japonesa')
     recipe_type = RecipeType.create(name: 'Prato Principal')
 
     recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
-            recipe_type: recipe_type, user: other_user, difficulty: 'Fácil',
-            cook_time: 50, ingredients: 'Salmão', method: 'Enrola tudo')
+                           recipe_type: recipe_type, user: other_user,
+                           difficulty: 'Fácil',
+                           cook_time: 50, ingredients: 'Salmão',
+                           method: 'Enrola tudo')
     other_recipe = Recipe.create(title: 'Sushi', cuisine: cuisine,
-            recipe_type: recipe_type, user: other_user, difficulty: 'Média',
-            cook_time: 50, ingredients: 'Arroz', method: 'Enrola tudo')
+                                 recipe_type: recipe_type, user: other_user,
+                                 difficulty: 'Média',
+                                 cook_time: 50, ingredients: 'Arroz',
+                                 method: 'Enrola tudo')
     another_recipe = Recipe.create(title: 'Rolinho Primavera', cuisine: cuisine,
-            recipe_type: recipe_type, user: other_user, difficulty: 'Díficil',
-            cook_time: 50, ingredients: 'Massa e estar na primavera', method: 'Frita')
+                                   recipe_type: recipe_type, user: other_user,
+                                   difficulty: 'Díficil',
+                                   cook_time: 50,
+                                   ingredients: 'Massa e estar na primavera',
+                                   method: 'Frita')
 
     visit root_path
     click_on 'Entrar'
@@ -130,7 +151,6 @@ feature 'user has favorites' do
     within('div.actions') do
       click_on 'Entrar'
     end
-
     click_on other_recipe.title
     click_on 'Favoritar'
     click_on 'Minhas Receitas Favoritas'
@@ -141,10 +161,10 @@ feature 'user has favorites' do
     expect(page).not_to have_content other_recipe.title
   end
 
-  scenario 'user visits the page of favorite recipes and the owner of the recipe deleted it' do
+  scenario 'user visits the page of favorite recipes and the
+    owner of the recipe deleted it' do
     user = create(:user)
     another_user = create(:user, email: 'another@gmail.com')
-
     recipe = create(:recipe, user: another_user)
     Favorite.create(user: user, recipe: recipe)
 

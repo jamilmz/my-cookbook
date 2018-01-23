@@ -10,7 +10,7 @@ feature 'user sees latest recipes at home' do
     recipe = create(:recipe, user: user, title: 'Camarão a milanesa',
                     cuisine: cuisine, recipe_type: recipe_type)
     recipes = create_list(:recipe, 6, cuisine: cuisine,
-                    recipe_type: recipe_type, user: user)
+                          recipe_type: recipe_type, user: user)
 
      login_as(user)
      visit root_path

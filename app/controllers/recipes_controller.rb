@@ -53,8 +53,6 @@ class RecipesController < ApplicationController
     if @recipe.destroy
       flash[:notice] = 'Receita deletada com sucesso'
       redirect_to root_path
-    else
-      redirect_to @recipe
     end
   end
 
@@ -69,9 +67,6 @@ class RecipesController < ApplicationController
     if @favorite.save
       flash[:notice] = 'Receita favoritada com sucesso'
       redirect_to @recipe
-    else
-      flash[:error] = 'Erro ao favoritar receita'
-      redirect_to @recipe
     end
   end
 
@@ -83,9 +78,6 @@ class RecipesController < ApplicationController
     @favorite = Favorite.find_by(user: current_user, recipe: @recipe)
     if @favorite.destroy
       flash[:notice] = 'Receita removida dos favoritos'
-      redirect_to @recipe
-    else
-      flash[:error] = 'Erro ao remover receita dos favoritos'
       redirect_to @recipe
     end
   end

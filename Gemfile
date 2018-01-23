@@ -21,6 +21,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem 'autoprefixer-rails'
+
+
 # Flexible authentication solution for Rails with Warden.
 gem 'devise'
 # Use CoffeeScript for .coffee assets and views
@@ -45,7 +47,11 @@ group :development, :test do
   # Acceptance test framework for web applications
   gem 'capybara'
 
+  gem 'simplecov', :require => false
+
   gem 'factory_bot_rails'
+
+  gem 'rubocop', '~> 0.52.1', require: false
 end
 
 group :development do

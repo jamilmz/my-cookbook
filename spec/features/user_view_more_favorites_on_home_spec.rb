@@ -5,26 +5,24 @@ feature 'user view more favorites recipes on home' do
     user = create(:user)
     other_user = create(:user, email: 'other@email.com')
     another_user = create(:user, email: 'another@email.com')
-
     recipe_type = create(:recipe_type, name: 'Prato Principal')
     cuisine = create(:cuisine, name: 'Japonesa')
 
-    rec1 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
-    rec2 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user,
-                  title: 'Misoshiru')
-    rec3 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user,
-                  title: 'Sashimi boat')
-    rec4 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user,
-                  title: 'Temaki California')
+    rec1 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
+    user: user)
+    rec2 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
+    user: user, title: 'Misoshiru')
+    rec3 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
+    user: user, title: 'Sashimi boat')
+    rec4 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
+    user: user, title: 'Temaki California')
 
 
     Favorite.create(user: user, recipe: rec2)
     Favorite.create(user: other_user, recipe: rec2)
     Favorite.create(user: another_user, recipe: rec2)
-
     Favorite.create(user: other_user, recipe: rec3)
     Favorite.create(user: another_user, recipe: rec3)
-
     Favorite.create(user: other_user, recipe: rec4)
 
     login_as(other_user)
@@ -45,32 +43,25 @@ feature 'user view more favorites recipes on home' do
     recipe_type = create(:recipe_type, name: 'Prato Principal')
     cuisine = create(:cuisine, name: 'Japonesa')
 
-    rec1 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
-    rec2 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user,
-                  title: 'Misoshiru')
-    rec3 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user,
-                  title: 'Sashimi boat')
-    rec4 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user,
-                  title: 'Temaki California')
-
-    rec4 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user,
-                  title: 'Tempura de Camarão')
+    rec1 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
+    user: user)
+    rec2 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
+    user: user, title: 'Misoshiru')
+    rec3 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
+    user: user, title: 'Sashimi boat')
+    rec4 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
+    user: user, title: 'Temaki California')
 
     Favorite.create(user: another_other_user, recipe: rec1)
-    
     Favorite.create(user: user, recipe: rec2)
     Favorite.create(user: other_user, recipe: rec2)
     Favorite.create(user: another_user, recipe: rec2)
     Favorite.create(user: another_other_user, recipe: rec2)
-
     Favorite.create(user: other_user, recipe: rec3)
     Favorite.create(user: another_user, recipe: rec3)
     Favorite.create(user: another_other_user, recipe: rec3)
-
     Favorite.create(user: other_user, recipe: rec4)
     Favorite.create(user: another_other_user, recipe: rec4)
-
-
 
     login_as(other_user)
     visit root_path

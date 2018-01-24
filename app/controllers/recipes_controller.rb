@@ -1,20 +1,20 @@
 class RecipesController < ApplicationController
   before_action :set_aside_variables, only: [:show, :new, :edit, :index,
-              :my_favorites, :my_recipes]
+                                             :my_favorites, :my_recipes]
   before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
-              :favorite, :favorites, :delete_favorite]
+                                            :favorite, :favorite,
+                                            :delete_favorite]
   before_action :set_find_recipe, only: [:show, :edit, :update, :destroy,
-              :favorite, :delete_favorite, :share]
+                                         :favorite, :delete_favorite, :share]
 
   def index
     @recipes = Recipe.all
   end
 
-  def show
-  end
+  def show() end
 
   def new
-  	@recipe = Recipe.new
+    @recipe = Recipe.new
   end
 
   def edit
@@ -30,11 +30,11 @@ class RecipesController < ApplicationController
     @recipe.user = current_user
 
     if @recipe.save
-      flash[:notice] = "Receita cadastrada com sucesso"
+      flash[:notice] = 'Receita cadastrada com sucesso'
       redirect_to @recipe
     else
       set_aside_variables
-      flash.now[:error] = "Você deve informar todos os dados da receita"
+      flash.now[:error] = 'Você deve informar todos os dados da receita'
       render :new
     end
   end
@@ -44,16 +44,15 @@ class RecipesController < ApplicationController
       redirect_to @recipe
     else
       set_aside_variables
-      flash.now[:error] = "Você deve informar todos os dados da receita"
+      flash.now[:error] = 'Você deve informar todos os dados da receita'
       render :edit
     end
   end
 
   def destroy
-    if @recipe.destroy
-      flash[:notice] = 'Receita deletada com sucesso'
-      redirect_to root_path
-    end
+    return false unless @recipe.destroy
+    flash[:notice] = 'Receita deletada com sucesso'
+    redirect_to root_path
   end
 
   def search
@@ -64,10 +63,9 @@ class RecipesController < ApplicationController
   def favorite
     @favorite = Favorite.new(user: current_user, recipe: @recipe)
 
-    if @favorite.save
-      flash[:notice] = 'Receita favoritada com sucesso'
-      redirect_to @recipe
-    end
+    return false unless @favorite.save
+    flash[:notice] = 'Receita favoritada com sucesso'
+    redirect_to @recipe
   end
 
   def my_favorites
@@ -76,10 +74,9 @@ class RecipesController < ApplicationController
 
   def delete_favorite
     @favorite = Favorite.find_by(user: current_user, recipe: @recipe)
-    if @favorite.destroy
-      flash[:notice] = 'Receita removida dos favoritos'
-      redirect_to @recipe
-    end
+    return false unless @favorite.destroy
+    flash[:notice] = 'Receita removida dos favoritos'
+    redirect_to @recipe
   end
 
   def my_recipes

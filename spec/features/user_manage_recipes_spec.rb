@@ -41,8 +41,6 @@ feature 'User manage only your recipes' do
   scenario 'User log in and can see edit button' do
     user = User.create(email: 'jamil@gmail.com',
                        password: '12345678', name: 'Jamil')
-    other_user = User.create(email: 'joao@email.com',
-                             password: '87654321', name: 'Joao')
     cuisine = Cuisine.create(name: 'Japonesa')
     recipe_type = RecipeType.create(name: 'Prato Principal')
     recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
@@ -50,11 +48,6 @@ feature 'User manage only your recipes' do
                            difficulty: 'Fácil',
                            cook_time: 50, ingredients: 'Salmão',
                            method: 'Enrola tudo')
-    other_recipe = Recipe.create(title: 'Sushi', cuisine: cuisine,
-                                 recipe_type: recipe_type, user: other_user,
-                                 difficulty: 'Média',
-                                 cook_time: 50, ingredients: 'Arroz',
-                                 method: 'Enrola tudo')
 
     visit root_path
     click_on 'Entrar'
@@ -80,7 +73,8 @@ feature 'User manage only your recipes' do
     recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
                            recipe_type: recipe_type, user: user,
                            difficulty: 'Fácil',
-                           cook_time: 50, ingredients: 'Salmão', method: 'Enrola tudo')
+                           cook_time: 50, ingredients: 'Salmão',
+                           method: 'Enrola tudo')
     other_recipe = Recipe.create(title: 'Sushi', cuisine: cuisine,
                                  recipe_type: recipe_type, user: other_user,
                                  difficulty: 'Média',
@@ -97,6 +91,7 @@ feature 'User manage only your recipes' do
     click_on other_recipe.title
 
     expect(page).to have_css('h1', text: other_recipe.title)
+    expect(page).not_to have_css('h1', text: recipe.title)
     expect(page).not_to have_link('Editar')
   end
 

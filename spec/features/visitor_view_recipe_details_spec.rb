@@ -6,9 +6,11 @@ feature 'Visitor view recipe details' do
     cuisine = Cuisine.create(name: 'Brasileira')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                          cuisine: cuisine, difficulty: 'Medio', cook_time: 60,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                           cuisine: cuisine, difficulty: 'Medio', cook_time: 60,
+                           ingredients: 'Farinha, açucar, cenoura',
+                           method: 'Cozinhe a cenoura, corte em pedaços '\
+                                  'pequenos, misture com o restante dos '\
+                                  'ingredientes')
 
     # simula a acao do usuario
     visit root_path
@@ -32,10 +34,12 @@ feature 'Visitor view recipe details' do
     cuisine = Cuisine.create(name: 'Brasileira')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type:  recipe_type,
-                          cuisine: cuisine, difficulty: 'Medio',
-                          cook_time: 60,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                           cuisine: cuisine, difficulty: 'Medio',
+                           cook_time: 60,
+                           ingredients: 'Farinha, açucar, cenoura',
+                           method: 'Cozinhe a cenoura, corte em pedaços '\
+                                  'pequenos, misture com o restante dos '\
+                                  'ingredientes')
 
     # simula a acao do usuario
     visit root_path

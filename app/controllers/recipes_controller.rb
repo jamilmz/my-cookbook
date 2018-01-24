@@ -93,22 +93,24 @@ class RecipesController < ApplicationController
 
     RecipesMailer.share(name, email, message, @recipe.id).deliver_now
 
-    flash[:notice] = "Receita compartilhada com sucesso"
+    flash[:notice] = 'Receita compartilhada com sucesso'
     redirect_to @recipe
   end
 
   private
-    def recipe_params
-      params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id,
-      :difficulty, :cook_time, :ingredients, :method, :image, :highlight)
-    end
 
-    def set_aside_variables
-      @cuisines = Cuisine.all
-      @recipe_types = RecipeType.all
-    end
+  def recipe_params
+    params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id,
+                                   :difficulty, :cook_time, :ingredients,
+                                   :method, :image, :highlight)
+  end
 
-    def set_find_recipe
-      @recipe = Recipe.find(params[:id])
-    end
+  def set_aside_variables
+    @cuisines = Cuisine.all
+    @recipe_types = RecipeType.all
+  end
+
+  def set_find_recipe
+    @recipe = Recipe.find(params[:id])
+  end
 end

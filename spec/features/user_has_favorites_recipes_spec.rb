@@ -5,11 +5,9 @@ feature 'user has favorites' do
     user = User.create(email: 'jamil@gmail.com',
                        password: '12345678', name: 'Jamil')
     other_user = User.create(email: 'joao@email.com',
-                       password: '87654321', name: 'Joao')
-
+                             password: '87654321', name: 'Joao')
     cuisine = Cuisine.create(name: 'Japonesa')
     recipe_type = RecipeType.create(name: 'Prato Principal')
-
     recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
                            recipe_type: recipe_type, user: other_user,
                            difficulty: 'Fácil',
@@ -33,6 +31,7 @@ feature 'user has favorites' do
 
     expect(page).to have_content('Receita favoritada com sucesso')
     expect(page).to have_content(recipe.title)
+    expect(page).not_to have_content(other_recipe.title)
   end
 
   scenario 'and click on Minhas Receitas Favoritas and see your favorites' do
@@ -69,14 +68,13 @@ feature 'user has favorites' do
 
     expect(page).to have_link(other_recipe.title)
     expect(page).not_to have_link(recipe.title)
-
   end
 
   scenario 'ans has multiples favorites' do
     user = User.create(email: 'jamil@gmail.com',
-    password: '12345678', name: 'Jamil')
+                       password: '12345678', name: 'Jamil')
     other_user = User.create(email: 'joao@email.com',
-    password: '87654321', name: 'Joao')
+                             password: '87654321', name: 'Joao')
 
     cuisine = Cuisine.create(name: 'Japonesa')
     recipe_type = RecipeType.create(name: 'Prato Principal')
@@ -123,26 +121,13 @@ feature 'user has favorites' do
                        password: '12345678', name: 'Jamil')
     other_user = User.create(email: 'joao@email.com',
                              password: '87654321', name: 'Joao')
-
     cuisine = Cuisine.create(name: 'Japonesa')
     recipe_type = RecipeType.create(name: 'Prato Principal')
-
     recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
                            recipe_type: recipe_type, user: other_user,
                            difficulty: 'Fácil',
                            cook_time: 50, ingredients: 'Salmão',
                            method: 'Enrola tudo')
-    other_recipe = Recipe.create(title: 'Sushi', cuisine: cuisine,
-                                 recipe_type: recipe_type, user: other_user,
-                                 difficulty: 'Média',
-                                 cook_time: 50, ingredients: 'Arroz',
-                                 method: 'Enrola tudo')
-    another_recipe = Recipe.create(title: 'Rolinho Primavera', cuisine: cuisine,
-                                   recipe_type: recipe_type, user: other_user,
-                                   difficulty: 'Díficil',
-                                   cook_time: 50,
-                                   ingredients: 'Massa e estar na primavera',
-                                   method: 'Frita')
 
     visit root_path
     click_on 'Entrar'
@@ -151,14 +136,14 @@ feature 'user has favorites' do
     within('div.actions') do
       click_on 'Entrar'
     end
-    click_on other_recipe.title
+    click_on recipe.title
     click_on 'Favoritar'
     click_on 'Minhas Receitas Favoritas'
-    click_on other_recipe.title
+    click_on recipe.title
     click_on 'Remover Favorito'
     click_on 'Minhas Receitas Favoritas'
 
-    expect(page).not_to have_content other_recipe.title
+    expect(page).not_to have_content recipe.title
   end
 
   scenario 'user visits the page of favorite recipes and the
@@ -177,18 +162,18 @@ feature 'user has favorites' do
 
     click_on 'Minhas Receitas Favoritas'
 
-   expect(page).not_to have_link recipe.title
-   end
+    expect(page).not_to have_link recipe.title
+  end
 
-   scenario 'visitor cant see favorite links' do
-     user = create(:user)
-     recipe = create(:recipe, user: user)
+  scenario 'visitor cant see favorite links' do
+    user = create(:user)
+    recipe = create(:recipe, user: user)
 
-     visit root_path
+    visit root_path
 
-     click_on recipe.title
+    click_on recipe.title
 
-     expect(page).not_to have_link 'Favoritar'
-     expect(page).not_to have_link 'Remover Favorito'
-   end
+    expect(page).not_to have_link 'Favoritar'
+    expect(page).not_to have_link 'Remover Favorito'
+  end
 end

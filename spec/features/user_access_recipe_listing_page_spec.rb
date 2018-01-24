@@ -7,30 +7,28 @@ feature 'user sees latest recipes at home' do
     cuisine = create(:cuisine)
     recipe_type = create(:recipe_type)
 
-    recipe = create(:recipe, user: user, title: 'Camarão a milanesa',
+    create(:recipe, user: user, title: 'Camarão a milanesa',
                     cuisine: cuisine, recipe_type: recipe_type)
-    recipes = create_list(:recipe, 6, cuisine: cuisine,
-                          recipe_type: recipe_type, user: user)
+    create_list(:recipe, 6, cuisine: cuisine,
+                            recipe_type: recipe_type, user: user)
 
-     login_as(user)
-     visit root_path
+    login_as(user)
+    visit root_path
 
-     expect(page).to  have_selector('div.recipe', count: 6)
-
+    expect(page).to have_selector('div.recipe', count: 6)
   end
 
   scenario 'sees all recipes' do
     user = create(:user)
     cuisine = create(:cuisine)
     recipe_type = create(:recipe_type)
-    recipes = create_list(:recipe, 10, cuisine: cuisine,
-    recipe_type: recipe_type, user: user)
+    create_list(:recipe, 10, cuisine: cuisine,
+                             recipe_type: recipe_type, user: user)
 
     login_as(user)
     visit root_path
 
     click_on 'Visualizar todas receitas'
-
     expect(page).to have_selector('div.recipe', count: 10)
   end
 end

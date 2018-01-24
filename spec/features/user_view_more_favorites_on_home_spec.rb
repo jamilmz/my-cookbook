@@ -9,14 +9,13 @@ feature 'user view more favorites recipes on home' do
     cuisine = create(:cuisine, name: 'Japonesa')
 
     rec1 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
-    user: user)
+                           user: user)
     rec2 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
-    user: user, title: 'Misoshiru')
+                           user: user, title: 'Misoshiru')
     rec3 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
-    user: user, title: 'Sashimi boat')
+                           user: user, title: 'Sashimi boat')
     rec4 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
-    user: user, title: 'Temaki California')
-
+                           user: user, title: 'Temaki California')
 
     Favorite.create(user: user, recipe: rec2)
     Favorite.create(user: other_user, recipe: rec2)
@@ -44,13 +43,13 @@ feature 'user view more favorites recipes on home' do
     cuisine = create(:cuisine, name: 'Japonesa')
 
     rec1 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
-    user: user)
+                           user: user)
     rec2 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
-    user: user, title: 'Misoshiru')
+                           user: user, title: 'Misoshiru')
     rec3 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
-    user: user, title: 'Sashimi boat')
+                           user: user, title: 'Sashimi boat')
     rec4 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type,
-    user: user, title: 'Temaki California')
+                           user: user, title: 'Temaki California')
 
     Favorite.create(user: another_other_user, recipe: rec1)
     Favorite.create(user: user, recipe: rec2)

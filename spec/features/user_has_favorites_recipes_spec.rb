@@ -2,22 +2,14 @@ require 'rails_helper'
 
 feature 'user has favorites' do
   scenario 'user marks a recipe as favorite' do
-    user = User.create(email: 'jamil@gmail.com',
-                       password: '12345678', name: 'Jamil')
-    other_user = User.create(email: 'joao@email.com',
-                             password: '87654321', name: 'Joao')
-    cuisine = Cuisine.create(name: 'Japonesa')
-    recipe_type = RecipeType.create(name: 'Prato Principal')
-    recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
-                           recipe_type: recipe_type, user: other_user,
-                           difficulty: 'Fácil',
-                           cook_time: 50, ingredients: 'Salmão',
-                           method: 'Enrola tudo')
-    other_recipe = Recipe.create(title: 'Sushi', cuisine: cuisine,
-                                 recipe_type: recipe_type, user: other_user,
-                                 difficulty: 'Média',
-                                 cook_time: 50, ingredients: 'Arroz',
-                                 method: 'Enrola tudo')
+    user = create(:user)
+    other_user = create(:user, email: 'joao@email.com')
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, user: user, cuisine: cuisine,
+                             recipe_type: recipe_type)
+    other_recipe = create(:recipe, title: 'Sushi', cuisine: cuisine,
+                                   recipe_type: recipe_type, user: other_user)
 
     visit root_path
     click_on 'Entrar'
@@ -35,24 +27,14 @@ feature 'user has favorites' do
   end
 
   scenario 'and click on Minhas Receitas Favoritas and see your favorites' do
-    user = User.create(email: 'jamil@gmail.com',
-                       password: '12345678', name: 'Jamil')
-    other_user = User.create(email: 'joao@email.com',
-                             password: '87654321', name: 'Joao')
-
-    cuisine = Cuisine.create(name: 'Japonesa')
-    recipe_type = RecipeType.create(name: 'Prato Principal')
-
-    recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
-                           recipe_type: recipe_type, user: other_user,
-                           difficulty: 'Fácil',
-                           cook_time: 50, ingredients: 'Salmão',
-                           method: 'Enrola tudo')
-    other_recipe = Recipe.create(title: 'Sushi', cuisine: cuisine,
-                                 recipe_type: recipe_type, user: other_user,
-                                 difficulty: 'Média',
-                                 cook_time: 50, ingredients: 'Arroz',
-                                 method: 'Enrola tudo')
+    user = create(:user)
+    other_user = create(:user, email: 'joao@email.com')
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, user: user, cuisine: cuisine,
+                             recipe_type: recipe_type)
+    other_recipe = create(:recipe, title: 'Sushi', cuisine: cuisine,
+                                   recipe_type: recipe_type, user: other_user)
 
     visit root_path
     click_on 'Entrar'
@@ -71,30 +53,17 @@ feature 'user has favorites' do
   end
 
   scenario 'ans has multiples favorites' do
-    user = User.create(email: 'jamil@gmail.com',
-                       password: '12345678', name: 'Jamil')
-    other_user = User.create(email: 'joao@email.com',
-                             password: '87654321', name: 'Joao')
-
-    cuisine = Cuisine.create(name: 'Japonesa')
-    recipe_type = RecipeType.create(name: 'Prato Principal')
-
-    recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
-                           recipe_type: recipe_type, user: other_user,
-                           difficulty: 'Fácil',
-                           cook_time: 50, ingredients: 'Salmão',
-                           method: 'Enrola tudo')
-    other_recipe = Recipe.create(title: 'Sushi', cuisine: cuisine,
-                                 recipe_type: recipe_type, user: other_user,
-                                 difficulty: 'Média',
-                                 cook_time: 50, ingredients: 'Arroz',
-                                 method: 'Enrola tudo')
-    another_recipe = Recipe.create(title: 'Rolinho Primavera', cuisine: cuisine,
-                                   recipe_type: recipe_type, user: other_user,
-                                   difficulty: 'Díficil',
-                                   cook_time: 50,
-                                   ingredients: 'Massa e estar na primavera',
-                                   method: 'Frita')
+    user = create(:user)
+    other_user = create(:user, email: 'joao@email.com')
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, user: user, cuisine: cuisine,
+                             recipe_type: recipe_type)
+    other_recipe = create(:recipe, title: 'Sushi', cuisine: cuisine,
+                                   recipe_type: recipe_type, user: other_user)
+    another_recipe = create(:recipe, title: 'Rolinho Primavera',
+                                     cuisine: cuisine,
+                                     recipe_type: recipe_type, user: other_user)
 
     visit root_path
     click_on 'Entrar'
@@ -117,17 +86,12 @@ feature 'user has favorites' do
   end
 
   scenario 'remove favorite' do
-    user = User.create(email: 'jamil@gmail.com',
-                       password: '12345678', name: 'Jamil')
-    other_user = User.create(email: 'joao@email.com',
-                             password: '87654321', name: 'Joao')
-    cuisine = Cuisine.create(name: 'Japonesa')
-    recipe_type = RecipeType.create(name: 'Prato Principal')
-    recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
-                           recipe_type: recipe_type, user: other_user,
-                           difficulty: 'Fácil',
-                           cook_time: 50, ingredients: 'Salmão',
-                           method: 'Enrola tudo')
+    user = create(:user)
+    other_user = create(:user, email: 'joao@email.com')
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, user: other_user, cuisine: cuisine,
+                             recipe_type: recipe_type)
 
     visit root_path
     click_on 'Entrar'

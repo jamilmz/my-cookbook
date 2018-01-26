@@ -24,6 +24,7 @@ feature 'user upload recipe image' do
     page.attach_file('Foto', Rails.root + 'spec/support/bolo.jpeg')
     click_on 'Enviar'
 
-    expect(page).to have_css("img[src*='bolo.jpeg']")
+    expect(page).to have_css('figure.recipe_image')
+    # expect(page).to have_css("img[src*='bolo.jpeg']")
   end
 end

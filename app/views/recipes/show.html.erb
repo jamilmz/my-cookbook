@@ -28,9 +28,11 @@
 
 				<% if user_signed_in? %>
 					<% if current_user.favorited?(@recipe) %>
-					  <%= link_to I18n.t(:remove_favorite), delete_favorite_recipe_path(@recipe), method: :delete %>
+					  <%= link_to I18n.t(:remove_favorite),
+						delete_favorite_recipe_path(@recipe), method: :delete %>
 					<% else %>
-					  <%= link_to I18n.t(:favorite), favorite_recipe_path(@recipe), method: :post %>
+					  <%= link_to I18n.t(:favorite),
+						favorite_recipe_path(@recipe), method: :post %>
 					<% end %>
 
 					<% if current_user.my_recipe?(@recipe) %>
@@ -40,11 +42,14 @@
 				<% end %>
 			</div>
 			<div class="col-md-4 col-sm-6">
-				<% if @recipe.image.file? %>
-	        <%= image_tag @recipe.image.url(:medium) %>
-	    	<% else %>
-	      	<p>Foto não encontrada</p>
-	    	<% end %>
+				<figure class="recipe_image">
+					<% if @recipe.image.file? %>
+		        <%= image_tag @recipe.image.url(:medium) %>
+		    	<% else %>
+						<p>Foto não encontrada</p>
+					<% end %>
+				</figure>
+
 				<h3> <%= I18n.t :method %> </h3>
 				<p> <%= @recipe.method %> </p>
 				<% unless @recipe.user.nil? %>

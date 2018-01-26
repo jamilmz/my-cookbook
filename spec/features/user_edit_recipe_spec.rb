@@ -3,17 +3,11 @@ require 'rails_helper'
 feature 'User update recipe' do
   scenario 'successfully' do
     # cria os dados necessarios
-    user = User.create(email: 'jamil@gmail.com', password: '12345678',
-                       name: 'Jamil')
-    arabian_cuisine = Cuisine.create(name: 'Arabe')
-    main_type = RecipeType.create(name: 'Prato Principal')
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: main_type,
-                           cuisine: arabian_cuisine, difficulty: 'Médio',
-                           cook_time: 50, user: user,
-                           ingredients: 'Farinha, açucar, cenoura',
-                           method: 'Cozinhe a cenoura, corte em pedaços'\
-                                   'pequenos, misture com o restante dos'\
-                                   ' ingredientes')
+    user = create(:user)
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, user: user, cuisine: cuisine,
+                             recipe_type: recipe_type)
 
     # simula a acao do usuario
     visit root_path
@@ -30,8 +24,8 @@ feature 'User update recipe' do
     click_on 'Editar'
 
     fill_in 'Título', with: 'Bolo de cenoura'
-    select arabian_cuisine.name, from: 'Cozinha'
-    select main_type.name, from: 'Tipo da Receita'
+    select cuisine.name, from: 'Cozinha'
+    select recipe_type.name, from: 'Tipo da Receita'
     fill_in 'Dificuldade', with: 'Médio'
     fill_in 'Tempo de Preparo', with: '45'
     fill_in 'Ingredientes', with: 'Cenoura, farinha, ovo, oleo de soja e '\
@@ -42,8 +36,8 @@ feature 'User update recipe' do
 
     expect(page).to have_css('h1', text: 'Bolo de cenoura')
     expect(page).to have_css('h3', text: 'Detalhes')
-    expect(page).to have_css('p', text: main_type.name)
-    expect(page).to have_css('p', text: arabian_cuisine.name)
+    expect(page).to have_css('p', text: recipe_type.name)
+    expect(page).to have_css('p', text: cuisine.name)
     expect(page).to have_css('p', text: 'Médio')
     expect(page).to have_css('p', text: '45 minutos')
     expect(page).to have_css('p', text:  'Cenoura, farinha, ovo, oleo de soja '\
@@ -54,17 +48,11 @@ feature 'User update recipe' do
 
   scenario 'and all fields must be filled' do
     # cria os dados necessarios, nesse caso nao vamos criar dados no banco
-    user = User.create(email: 'jamil@gmail.com', password: '12345678',
-                       name: 'Jamil')
-    arabian_cuisine = Cuisine.create(name: 'Arabe')
-    main_type = RecipeType.create(name: 'Prato Principal')
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: main_type,
-                           cuisine: arabian_cuisine, difficulty: 'Médio',
-                           cook_time: 50, user: user,
-                           ingredients: 'Farinha, açucar, cenoura',
-                           method: 'Cozinhe a cenoura, corte em pedaços '\
-                                   'pequenos, misture com o restante dos '\
-                                   'ingredientes')
+    user = create(:user)
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, user: user, cuisine: cuisine,
+                             recipe_type: recipe_type)
 
     # simula a acao do usuario
     visit root_path

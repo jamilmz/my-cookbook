@@ -2,23 +2,15 @@ require 'rails_helper'
 
 feature 'User manage only your recipes' do
   scenario 'successfully' do
-    user = User.create(email: 'jamil@gmail.com',
-                       password: '12345678', name: 'Jamil')
-    other_user = User.create(email: 'joao@email.com',
-                             password: '87654321', name: 'Joao')
-    cuisine = Cuisine.create(name: 'Japonesa')
-    recipe_type = RecipeType.create(name: 'Prato Principal')
-    recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
-                           recipe_type: recipe_type, user: user,
-                           difficulty: 'Facil',
-                           cook_time: 50, ingredients: 'Salmão',
-                           method: 'Enrola tudo')
-    other_recipe = Recipe.create(title: 'Sushi', cuisine: cuisine,
-                                 recipe_type: recipe_type, user: other_user,
-                                 difficulty: 'Media',
-                                 cook_time: 50, ingredients: 'Arroz',
-                                 method: 'Enrola tudo')
-
+    user = create(:user)
+    other_user = create(:user, email: 'other@gmail.com')
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, user: user, cuisine: cuisine,
+                             recipe_type: recipe_type)
+    other_recipe = create(:recipe, title: 'coxinha',
+                                   user: other_user, cuisine: cuisine,
+                                   recipe_type: recipe_type)
     visit root_path
     click_on 'Entrar'
     fill_in 'Email', with: user.email
@@ -39,16 +31,11 @@ feature 'User manage only your recipes' do
   end
 
   scenario 'User log in and can see edit button' do
-    user = User.create(email: 'jamil@gmail.com',
-                       password: '12345678', name: 'Jamil')
-    cuisine = Cuisine.create(name: 'Japonesa')
-    recipe_type = RecipeType.create(name: 'Prato Principal')
-    recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
-                           recipe_type: recipe_type, user: user,
-                           difficulty: 'Fácil',
-                           cook_time: 50, ingredients: 'Salmão',
-                           method: 'Enrola tudo')
-
+    user = create(:user)
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, user: user, cuisine: cuisine,
+                             recipe_type: recipe_type)
     visit root_path
     click_on 'Entrar'
     fill_in 'Email', with: user.email
@@ -64,22 +51,15 @@ feature 'User manage only your recipes' do
   end
 
   scenario 'User doesnt see edit button on anothers user recipe' do
-    user = User.create(email: 'jamil@gmail.com', password: '12345678',
-                       name: 'Jamil')
-    other_user = User.create(email: 'joao@email.com', password: '87654321',
-                             name: 'Joao')
-    cuisine = Cuisine.create(name: 'Japonesa')
-    recipe_type = RecipeType.create(name: 'Prato Principal')
-    recipe = Recipe.create(title: 'Temaki', cuisine: cuisine,
-                           recipe_type: recipe_type, user: user,
-                           difficulty: 'Fácil',
-                           cook_time: 50, ingredients: 'Salmão',
-                           method: 'Enrola tudo')
-    other_recipe = Recipe.create(title: 'Sushi', cuisine: cuisine,
-                                 recipe_type: recipe_type, user: other_user,
-                                 difficulty: 'Média',
-                                 cook_time: 50, ingredients: 'Arroz',
-                                 method: 'Enrola tudo')
+    user = create(:user)
+    other_user = create(:user, email: 'other@gmail.com')
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, user: user, cuisine: cuisine,
+                             recipe_type: recipe_type)
+    other_recipe = create(:recipe, title: 'coxinha',
+                                   user: other_user, cuisine: cuisine,
+                                   recipe_type: recipe_type)
 
     visit root_path
     click_on 'Entrar'

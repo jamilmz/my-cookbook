@@ -4,15 +4,8 @@ require 'rails_helper'
 feature 'Visitor view recipes by type' do
   scenario 'from home page' do
     # cria os dados necessarios previamente
-    cuisine = Cuisine.create(name: 'Brasileira')
-    recipe_type = RecipeType.create(name: 'Sobremesa')
-
-    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                           cuisine: cuisine, difficulty: 'Medio',
-                           cook_time: 60,
-                           ingredients: 'Farinha, açucar, cenoura',
-                           method: 'Cozinhe a cenoura, corte em pedaços
-                           pequenos, misture com o restante dos ingredientes')
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, recipe_type: recipe_type)
 
     # simula a acao do usuario
     visit root_path
@@ -29,62 +22,32 @@ feature 'Visitor view recipes by type' do
 
   scenario 'and view only recipes from same type' do
     # cria os dados necessarios previamente
-    brazilian_cuisine = Cuisine.create(name: 'Brasileira')
-    dessert_recipe_type = RecipeType.create(name: 'Sobremesa')
-    dessert_recipe = Recipe.create(title: 'Bolo de cenoura',
-                                   recipe_type: dessert_recipe_type,
-                                   cuisine: brazilian_cuisine,
-                                   difficulty: 'Medio',
-                                   cook_time: 60,
-                                   ingredients: 'Farinha, açucar, cenoura',
-                                   method: 'Cozinhe a cenoura, corte em pedaços
-                                   pequenos, misture com o restante dos
-                                   ingredientes')
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    other_recipe_type = create(:recipe_type, name: 'rodizio')
+    recipe = create(:recipe, cuisine: cuisine, recipe_type: recipe_type)
+    other_recipe = create(:recipe, title: 'Churrascao', cuisine: cuisine,
+                                   recipe_type: other_recipe_type)
 
-    italian_cuisine = Cuisine.create(name: 'Italiana')
-    main_recipe_type = RecipeType.create(name: 'Prato Principal')
-    main_recipe = Recipe.create(title: 'Macarrão Carbonara',
-                                recipe_type: main_recipe_type,
-                                cuisine: italian_cuisine,
-                                difficulty: 'Dificil',
-                                cook_time: 30,
-                                ingredients: 'Massa, ovos, bacon',
-                                method: 'Frite o bacon; Cozinhe a massa ate
-                                ficar al dent; Misture os ovos e o bacon a
-                                massa ainda quente;')
     # simula a acao do usuario
     visit root_path
-    click_on main_recipe_type.name
+    click_on recipe_type.name
 
     # expectativas do usuario apos a acao
-    expect(page).to have_css('h1', text: main_recipe.title)
-    expect(page).to have_css('li', text: main_recipe.recipe_type.name)
-    expect(page).to have_css('li', text: main_recipe.cuisine.name)
-    expect(page).to have_css('li', text: main_recipe.difficulty)
-    expect(page).to have_css('li', text: "#{main_recipe.cook_time} minutos")
-    expect(page).not_to have_css('h1', text: dessert_recipe.title)
-    expect(page).not_to have_css('li', text: dessert_recipe.recipe_type.name)
-    expect(page).not_to have_css('li', text: dessert_recipe.cuisine.name)
-    expect(page).not_to have_css('li', text: dessert_recipe.difficulty)
-    expect(page).not_to have_css('li',
-                                 text: "#{dessert_recipe.cook_time} minutos")
+    expect(page).to have_css('h1', text: recipe.title)
+    expect(page).not_to have_css('h1', text: other_recipe.title)
   end
 
   scenario 'and type has no recipe' do
     # cria os dados necessarios previamente
-    brazilian_cuisine = Cuisine.create(name: 'Brasileira')
-    recipe_type = RecipeType.create(name: 'Sobremesa')
-    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                           cuisine: brazilian_cuisine, difficulty: 'Medio',
-                           cook_time: 60,
-                           ingredients: 'Farinha, açucar, cenoura',
-                           method: 'Cozinhe a cenoura, corte em pedaços
-                           pequenos, misture com o restante dos ingredientes')
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, recipe_type: recipe_type, cuisine: cuisine)
 
-    main_dish_type = RecipeType.create(name: 'Prato Principal')
+    other_recipe_type = create(:recipe_type, name: 'Prato Principal')
     # simula a acao do usuario
     visit root_path
-    click_on main_dish_type.name
+    click_on other_recipe_type.name
 
     # expectativas do usuario apos a acao
     expect(page).not_to have_content(recipe.title)

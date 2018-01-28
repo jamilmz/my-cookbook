@@ -12,29 +12,71 @@
   </head>
 
   <body>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-7 col-md-7">
-          <h1> CookBook </h1>
-          <%if user_signed_in? %>
-            <p> <%= I18n.t(:welcome) %>
-              <%= current_user.email %>
-              <%= I18n.t(:welcome_phrase) %>
-            </p>
-          <% else %>
-            <p> <%= I18n.t(:welcome_complete) %></p>
-          <% end %>
+    <header>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12 col-md-5 col-sm-12">
+            <h1> CookBook </h1>
+            <%if user_signed_in? %>
+              <p> <%= I18n.t(:welcome) %>
+                <%= current_user.email %>
+                <%= I18n.t(:welcome_phrase) %>
+              </p>
+            <% else %>
+              <p> <%= I18n.t(:welcome_complete) %></p>
+            <% end %>
+          </div>
+          <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="row search">
+              <%= form_tag(search_recipes_path, method: "get") do %>
+                <%= label_tag(:search, I18n.t(:search)) %>
+                <%= search_field_tag(:search) %>
+                <%= submit_tag(I18n.t(:seek), class:'btn btn-default') %>
+              <% end %>
+            </div>
+          </div>
 
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-        </div>
-         <div class="col-xs-5 col-md-5">
-          <%= render 'shared/menu' %>
+          <div class="col-md-1 col-sm-0 col-xs-0">
+          </div>
+
+          <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="row">
+              <nav class="navbar header-menu">
+                <ul class="nav navbar-nav">
+                  <div class="col-xs-4 col-md-4 col-sm-4">
+                    <li> <%= link_to(I18n.t(:home) , root_path)%>
+                    </li>
+                  </div>
+                  <div class="col-xs-4 col-md-4 col-sm-4">
+                    <li> <%= link_to('Todas Receitas' , recipes_path)%> </li>
+                  </div>
+                  <div class="col-xs-4 col-md-4 col-sm-4">
+                    <% if user_signed_in? %>
+                      <li> <%= link_to I18n.t(:logout), destroy_user_session_path, method: :delete %> </li>
+                    <% else %>
+                      <li><%= link_to I18n.t(:login), new_user_session_path  %> </li>
+                    <% end %>
+                  </div>
+                </ul>
+              </nav>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </header>
 
+    <% if user_signed_in? %>
+      <section class="user-menu">
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <%= render 'shared/menu' %>
+          </div>
+        </div>
+      </section>
+    <% end %>
 
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
     <div class="container-fluid">
       <%= yield %>

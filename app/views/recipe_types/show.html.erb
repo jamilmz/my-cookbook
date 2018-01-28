@@ -10,13 +10,13 @@
 				<%= @recipe_type.name %>
 			 </h1>
 			<% if @recipes.count > 0 %>
-				<div class="col-md-4 col-sm-6">
-					<% @recipes.each do |recipe| %>
-						<% @recipes.each do |recipe| %>
-						 <%= render recipe %>
-						<% end %>
-					<% end %>
-				</div>
+				<% @recipes.each do |recipe| %>
+					<div class="col-md-4 col-sm-6">
+						<div class="recipe">
+							<%= render recipe %>
+						</div>
+					</div>
+				<% end %>
 			<% else %>
 			  <p> <%= I18n.t :recipes_match_error %> </p>
 			<% end %>

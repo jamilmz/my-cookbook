@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_aside_variables, only: [:show, :new, :edit, :index,
-                                             :my_favorites, :my_recipes]
+                                             :my_favorites, :my_recipes,
+                                             :search]
   before_action :authenticate_user!, only: [:my_recipes, :new, :edit, :destroy,
                                             :favorite, :favorite,
                                             :delete_favorite]

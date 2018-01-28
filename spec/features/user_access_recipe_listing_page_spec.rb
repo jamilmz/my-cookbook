@@ -28,7 +28,7 @@ feature 'user sees latest recipes at home' do
     login_as(user)
     visit root_path
 
-    click_on 'Visualizar todas receitas'
+    click_on 'Todas Receitas'
     expect(page).to have_selector('div.recipe', count: 10)
   end
 end

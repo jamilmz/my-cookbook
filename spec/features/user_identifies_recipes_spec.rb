@@ -18,9 +18,7 @@ feature 'User signs recipes' do
       click_on 'Entrar'
     end
 
-    within('nav.menu') do
-      click_on 'Enviar uma receita'
-    end
+    click_on 'Enviar uma receita'
 
     fill_in 'Título', with: 'Temaki'
     select recipe_type.name, from: 'Tipo da Receita'

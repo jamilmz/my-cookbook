@@ -4,19 +4,25 @@
 	</div>
 
   <div class="col-md-8 col-sm-8">
+		<h2 class="recipes-title"> Receitas Recentes </h2>
   	<div class="row">
-      <div class="col-md-4 col-sm-6">
-    		<% @recipes.each do |recipe| %>
+    	<% @recipes.each do |recipe| %>
+				<div class="col-md-4 col-sm-6">
           <div class="recipe">
   			    <%= render recipe %>
           </div>
-    		<% end %>
-        <% @favorite_recipes.each do |fav_recipe| %>
+				</div>
+  		<% end %>
+		</div>
+		<h2 class="favorites-title"> Mais favoritadas </h2>
+		<div class="row">
+      <% @favorite_recipes.each do |fav_recipe| %>
+			  <div class="col-md-4 col-sm-6">
           <div class="favorites">
             <%= render fav_recipe %>
           </div>
-        <% end %>
-      </div>
+        </div>
+			<% end %>
 	  </div>
   </div>
 </div>

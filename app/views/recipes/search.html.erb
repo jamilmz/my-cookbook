@@ -1,33 +1,26 @@
-<h1> <%= I18n.t(:search_results_by)%>: <%= @title %> </h1>
+<div class="row">
+	<div class="col-xs-12 col-sm-4 col-md-4">
+	  <%= render 'shared/aside' %>
+	</div>
 
-<% if @recipes.empty? %>
-	<p>
-		<%= I18n.t(:search_empty) %>
-		<%= link_to(I18n.t(:create_new_recipe), new_recipe_path)%>
-	</p>
-<% else%>
-	<% @recipes.each do |r| %>
-	  <h1>
-	    <%= link_to r.title, recipe_path(r.id) %>
-	  </h1>
-	  <ul>
-	    <li>
-				<%= I18n.t :type %>
-				<%= r.recipe_type.name %>
-			</li>
-	    <li>
-				<%= I18n.t :cuisine %>
-				<%= r.cuisine .name%>
-			</li>
-	    <li>
-				<%= I18n.t :difficulty %>
-				<%= r.difficulty %>
-			</li>
-	    <li>
-				<%= I18n.t :cook_time %>
-				<%= r.cook_time %>
-				<%= I18n.t :minutes %>
-			</li>
-	  </ul>
-  <% end %>
-<% end %>
+	<h1> <%= I18n.t(:search_results_by)%>: <%= @title %> </h1>
+
+	<% if @recipes.empty? %>
+		<p>
+			<%= I18n.t(:search_empty) %>
+			<%= link_to(I18n.t(:create_new_recipe), new_recipe_path)%>
+		</p>
+	<% else%>
+		<div class="col-md-8 col-sm-8">
+			<div class="row">
+				<% @recipes.each do |recipe| %>
+					<div class="col-md-4 col-sm-6">
+						<div class="recipe">
+							<%= render recipe %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+</div>

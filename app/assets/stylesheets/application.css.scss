@@ -14,22 +14,68 @@
 
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
+$link-color: white;
+$link-hover-decoration: inherit;
 
-$brand_color: #FF6440;
-$font_color: white;
+@import 'bootstrap-custom';
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+$brand_color: #FF5733;
+$secondary_color: #581845;
+$recipe_color: #FA7090;
+$card_font_color: #FFFFFF;
+$background_color: #F6F8F8;
+$font_color: #A9A9A9;
+$footer_color: #292929;
 
 body{
 	min-height: 400px;
   margin-bottom: 100px;
   clear: both;
+	background-color: $background_color;
+}
+
+h1, h3{
+	text-shadow: 1px 0 1px black;
+	color: $brand_color;
+}
+
+.recipe, .favorites{
+	border: 1px;
+	border-style: solid;
+	border-radius: 10px;
+	color: white;
+	font-size: 1em;
+	margin-bottom: 3em;
+	background-color: white;
+}
+
+.recipe{
+	background-color: $brand_color;
+	border-color: darken($brand_color, 20%);
+}
+
+.favorites{
+	background-color: $secondary_color;
+	border-color: darken($secondary_color, 20%);
 }
 
 ul {
   list-style-type:none;
 }
 
+header{
+  background-color: $brand_color;
+	color: white;
+	text-align: center;
+	h1{
+		color: white;
+	}
+	p, nav{
+		font-weight: bold;
+	}
+}
 
 footer{
 	position: fixed;
@@ -38,17 +84,54 @@ footer{
   width: 100%;
   text-align: center;
   border-style: solid;
-  border-color: darken($brand_color, 30%);
-  background-color: $brand_color;
+  background-color: $footer_color;
+	border-color: darken($footer_color, 10%);
 
   li {
     display: inline;
     margin-right: 5em;
   }
-  
+
   span{
-    color: $font_color;
+    color: $card_font_color;
   }
 }
 
+.search, .header-menu{
+	margin-top: 10%;
+}
 
+.user-menu{
+	font-weight: bold;
+}
+
+aside{
+	font-weight: bold;
+	margin-left: 10%;
+	.cuisines a, .recipe_types a{
+		color: $footer_color;
+	}
+}
+
+.recipes-title, .favorites-title{
+	text-align: center;
+	color: white;
+	margin-bottom: 1em;
+	text-shadow: 1px 0 1px black;
+	border: 1px;
+	border-style: solid;
+	border-radius: 10px;
+}
+
+.recipes-title{
+	background-color: $brand_color;
+}
+
+.favorites-title{
+	background-color: $secondary_color;
+}
+
+.destaque{
+	margin-top: 2em;
+	float: right;
+}

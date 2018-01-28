@@ -1,11 +1,20 @@
-<h1>
-   <%= link_to recipe.title, recipe_path(recipe) %>
-</h1>
-<% if recipe.highlight %>
-  <figure class="destaque">
-    <%= image_tag('star.png', alt: 'destaque', size: '30') %>
-  </figure>
-<% end %>
+<div class="row">
+  <div class="col-md-1 col-sm-1 col-xs-1">
+  </div>
+
+  <div class="col-md-5 col-sm-5 col-xs-5">
+    <h1>
+       <%= link_to recipe.title, recipe_path(recipe) %>
+    </h1>
+  </div>
+  <div class="col-md-4 col-sm-4 col-xs-4">
+    <% if recipe.highlight %>
+      <figure class="destaque">
+        <%= image_tag('star.png', alt: 'destaque', size: '30') %>
+      </figure>
+    <% end %>
+  </div>
+</div>
 <ul>
   <li> <%= recipe.recipe_type.name %> </li>
   <li> <%= recipe.cuisine.name %> </li>

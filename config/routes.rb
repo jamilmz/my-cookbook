@@ -17,6 +17,6 @@ Rails.application.routes.draw do
       post 'share'
     end
   end
-  resources :cuisines, only: [:show, :new, :create]
-  resources :recipe_types, only: [:show, :new, :create]
+  resources :cuisines, only: [:index, :show, :new, :create, :edit, :update]
+  resources :recipe_types, only: [:index, :show, :new, :create, :edit, :update]
 end

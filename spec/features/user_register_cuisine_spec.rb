@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'User register cuisine' do
   scenario 'successfully' do
+    admin = create(:user, admin: true)
+    login_as(admin)
+
     visit new_cuisine_path
     fill_in 'Nome', with: 'Brasileira'
     click_on 'Enviar'
@@ -12,6 +15,9 @@ feature 'User register cuisine' do
   end
 
   scenario 'and must fill in name' do
+    admin = create(:user, admin: true)
+    login_as(admin)
+
     visit new_cuisine_path
     fill_in 'Nome', with: ''
     click_on 'Enviar'

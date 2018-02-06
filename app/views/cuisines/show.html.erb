@@ -20,6 +20,9 @@
 			<% else %>
 		  	<p> <%= I18n.t :cuisine_match_error %> </p>
 	  	<% end %>
+			<% if user_signed_in? && current_user.admin? %>
+			  <%= link_to 'Editar', edit_cuisine_path(@cuisine)%>
+			<% end %>
 		</div>
 	</div>
 </div>

@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-4 col-md-4">
+	  <%= render 'shared/aside' %>
+	</div>
+
+  <div class="col-md-8 col-sm-8">
+    <div class="cuisine-list">
+      <ul>
+      	<% @cuisines.each do |cuisine| %>
+          <li> <%= link_to(cuisine.name, cuisine_path(cuisine))%> </li>
+    		<% end %>
+      </ul>
+    </div>
+    <%= link_to('Nova cozinha', new_cuisine_path) %>
+  </div>
+</div>

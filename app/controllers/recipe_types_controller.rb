@@ -1,8 +1,13 @@
 class RecipeTypesController < ApplicationController
-  before_action :set_aside_variables, only: [:show, :new]
+  before_action :set_aside_variables, only: [:index, :show, :new, :edit]
+  before_action :authenticate_user!, only: [:new, :create]
+  before_action :set_find_recipe_type, only: [:show, :edit, :update]
+
+  def index
+    @recipe_types = RecipeType.all
+  end
 
   def show
-    @recipe_type = RecipeType.find(params[:id])
     @recipes = Recipe.where(recipe_type_id: params[:id])
   end
 
@@ -22,6 +27,18 @@ class RecipeTypesController < ApplicationController
     end
   end
 
+  def edit() end
+
+  def update
+    if @recipe_type.update(recipe_type_params)
+      redirect_to @recipe_type
+    else
+      set_aside_variables
+      flash.now[:error] = 'Você deve informar o nome do tipo de receita'
+      render :edit
+    end
+  end
+
   private
 
   def recipe_type_params
@@ -31,5 +48,9 @@ class RecipeTypesController < ApplicationController
   def set_aside_variables
     @cuisines = Cuisine.all
     @recipe_types = RecipeType.all
+  end
+
+  def set_find_recipe_type
+    @recipe_type = RecipeType.find(params[:id])
   end
 end

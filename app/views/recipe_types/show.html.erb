@@ -3,7 +3,7 @@
 	  <%= render 'shared/aside' %>
 	</div>
 
-	<div class="col-md-8">
+	<div class="col-md-8 col-sm-8">
 		<div class="row">
 			<h1>
 			  <%= I18n.t :recipes_filtered_by %>
@@ -19,6 +19,9 @@
 				<% end %>
 			<% else %>
 			  <p> <%= I18n.t :recipes_match_error %> </p>
+			<% end %>
+			<% if user_signed_in? && current_user.admin? %>
+			  <%= link_to 'Editar', edit_recipe_type_path(@recipe_type)%>
 			<% end %>
 		</div>
   </div>

@@ -5,8 +5,10 @@ class Recipe < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
 
-  has_attached_file :image, styles: { medium: '300x300', thumb: '100x100>' }
-  validates_attachment_content_type :image, content_type: %r{/\Aimage\/.*\z/}
   validates :title, :difficulty, :cook_time,
             :ingredients, :method, presence: true
+
+  has_attached_file :image, styles: { medium: '300x300>', thumb: '100x100>' },
+                            default_url: '/images/:style/missing.png'
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 end

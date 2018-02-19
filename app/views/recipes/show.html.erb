@@ -44,7 +44,7 @@
 			<div class="col-md-4 col-sm-6">
 				<figure class="recipe_image">
 					<% if @recipe.image.file? %>
-		        <%= image_tag @recipe.image.url(:medium) %>
+		        <%= image_tag @recipe.image.url %>
 		    	<% else %>
 						<p>Foto não encontrada</p>
 					<% end %>

@@ -21,3 +21,5 @@ AllCops:
     - 'spec/rails_helper.rb'
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
+Style/RegexpLiteral:
+  AllowInnerSlashes: true
